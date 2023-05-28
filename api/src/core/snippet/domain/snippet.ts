@@ -9,7 +9,9 @@ export class Snippet {
     readonly description: SnippetDescription
   ) {}
 
-  public static create({ id, code, language, description }: Primitives<Snippet>) {
+  public static create({ id, code, language, description }: PrimitiveSnippet) {
     return new Snippet(id, code, language, new SnippetDescription(description));
   }
 }
+
+export type PrimitiveSnippet = Primitives<Snippet>;
