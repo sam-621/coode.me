@@ -5,7 +5,13 @@
   "author": "Rogelio Samuel Moreno Corrales <rogeliosamuel621@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "prepare": "yarn husky install && chmod ug+x .husky/*"
+    "prepare": "yarn husky install && chmod ug+x .husky/*",
+    "check:types": "tsc --pretty --noEmit",
+    "check:format": "prettier --check ./src",
+    "check:lint": "eslint . --ext ts --ext tsx --ext js",
+    "fix:lint": "next lint --fix",
+    "fix:types": "tsc --pretty --noEmit",
+    "fix:format": "prettier --write ."
   },
   "devDependencies": {
     "husky": "^8.0.3"
