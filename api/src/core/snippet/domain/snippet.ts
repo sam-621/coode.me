@@ -1,4 +1,5 @@
 import { Primitives, Uuid } from '@/core/shared/domain';
+
 import { SnippetDescription } from './components';
 
 export class Snippet {
