@@ -1,9 +1,10 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-echo 'Fixing before push...'
+echo 'Fixing before push in API...'
 
-npm run check:format ||
+# Check Prettier Standards
+npm run fix:format ||
 (
     echo 'Format error: Fix your format issues running `yarn fix:format`';
     false;

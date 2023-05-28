@@ -6,12 +6,11 @@
   "license": "MIT",
   "scripts": {
     "prepare": "yarn husky install && chmod ug+x .husky/*",
-    "check:types": "tsc --pretty --noEmit",
-    "check:format": "prettier --check ./src",
-    "check:lint": "eslint . --ext ts --ext tsx --ext js",
-    "fix:lint": "next lint --fix",
-    "fix:types": "tsc --pretty --noEmit",
-    "fix:format": "prettier --write ."
+    "check:types": "cd api && yarn check:types",
+    "check:format": "cd api && yarn check:format",
+    "check:lint": "cd api && yarn check:lint",
+    "fix:lint": "cd api && yarn fix_:lint",
+    "fix:format": "cd api && yarn fix:format"
   },
   "devDependencies": {
     "husky": "^8.0.3"
