@@ -1,9 +1,11 @@
+import { ValidationError } from '@/core/shared/domain';
+
 export class SnippetDescription {
   static readonly DESCRIPTION_MAX_LENGTH = 160;
 
   constructor(readonly value: Description) {
     if (!SnippetDescription.isValid(value)) {
-      throw new Error(SnippetDescription.invalidMessage());
+      throw new ValidationError(SnippetDescription.invalidMessage());
     }
   }
 
