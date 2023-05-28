@@ -8,6 +8,9 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
   },
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
   "[scss]": {
     "editor.defaultFormatter": "vscode.css-language-features"
   },

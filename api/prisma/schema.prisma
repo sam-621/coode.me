@@ -1,0 +1,181 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  username  String   @unique @db.VarChar(30)
+  position  String?  @db.VarChar(30)
+  bio       String?  @db.VarChar(160)
+  link      String?  @db.VarChar(30)
+  gh        String?  @db.VarChar(30)
+  location  String?  @db.VarChar(30)
+
+  // relations - one to many
+  followers Follower[]
+  comments  Comment[]
+  likes     Like[]
+  saves     Save[]
+  lists     List[]
+
+  // relations - many to one
+  pronoun    Pronoun  @relation(fields: [pronounId], references: [id])
+  pronounId  String
+  language   Language @relation(fields: [languageId], references: [id])
+  languageId String
+}
+
+model Project {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  cover     String   @db.VarChar(30)
+  title     String   @db.VarChar(50)
+  link      String   @db.VarChar(30)
+  content   String
+  featured  Boolean  @default(false)
+
+  // relations - one to many
+  comments Comment[]
+  likes    Like[]
+  saves    Save[]
+  lists    ProjectOnList[]
+}
+
+model List {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  cover       String   @db.VarChar(30)
+  title       String   @db.VarChar(50)
+  description String?  @db.VarChar(160)
+  isPrivate   Boolean  @default(false)
+
+  // relations - one to many
+  comments Comment[]
+  likes    Like[]
+  saves    Save[]
+  projects ProjectOnList[]
+  snippets SnippetOnList[]
+
+  // relations - many to one
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+}
+
+model Snippet {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  code        String
+  language    Int      @db.SmallInt
+  description String?  @db.VarChar(160)
+
+  // relations - one to many
+  comments Comment[]
+  likes    Like[]
+  saves    Save[]
+  lists    SnippetOnList[]
+}
+
+model ProjectOnList {
+  project   Project @relation(fields: [projectId], references: [id])
+  projectId String
+  list      List    @relation(fields: [listId], references: [id])
+  listId    String
+
+  @@id([projectId, listId])
+}
+
+model SnippetOnList {
+  snippet   Snippet @relation(fields: [snippetId], references: [id])
+  snippetId String
+  list      List    @relation(fields: [listId], references: [id])
+  listId    String
+
+  @@id([snippetId, listId])
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  content   String
+
+  // relations - many to one
+  user     User     @relation(fields: [userId], references: [id])
+  userId   String
+  project  Project? @relation(fields: [entityId], references: [id], map: "project")
+  snippet  Snippet? @relation(fields: [entityId], references: [id], map: "snippet")
+  list     List?    @relation(fields: [entityId], references: [id], map: "list")
+  entityId String
+}
+
+model Like {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // relations - many to one
+  user     User     @relation(fields: [userId], references: [id])
+  userId   String
+  project  Project? @relation(fields: [entityId], references: [id], map: "project")
+  snippet  Snippet? @relation(fields: [entityId], references: [id], map: "snippet")
+  list     List?    @relation(fields: [entityId], references: [id], map: "list")
+  entityId String
+}
+
+model Save {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // relations - many to one
+  user     User     @relation(fields: [userId], references: [id])
+  userId   String
+  project  Project? @relation(fields: [entityId], references: [id], map: "project")
+  snippet  Snippet? @relation(fields: [entityId], references: [id], map: "snippet")
+  list     List?    @relation(fields: [entityId], references: [id], map: "list")
+  entityId String
+}
+
+model Follower {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  followsTo String   @db.Uuid
+
+  // relations - many to one
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+}
+
+model Pronoun {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // relations - one to many
+  user User[]
+}
+
+model Language {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String   @db.VarChar(30)
+  ISO       String   @db.Char(2)
+
+  // relations - one to many
+  user User[]
+}
