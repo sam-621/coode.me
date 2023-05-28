@@ -19,5 +19,6 @@
   },
   "gacp": {
     "push": false
-  }
+  },
+  "dependencies": {}
 }
