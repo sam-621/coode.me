@@ -4,6 +4,12 @@
   "main": "index.js",
   "author": "Rogelio Samuel Moreno Corrales <rogeliosamuel621@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "prepare": "yarn husky install && chmod ug+x .husky/*"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3"
+  },
   "gacp": {
     "push": false
   }

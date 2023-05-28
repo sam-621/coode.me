@@ -1,0 +1,28 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo 'Fixing before push...'
+
+npm run check:format ||
+(
+    echo 'Format error: Fix your format issues running `yarn fix:format`';
+    false;
+)
+
+# Check ESLint Standards
+npm run check:lint ||
+(
+        echo 'Linter error: Fix your linter issues running `yarn fix:lint`'
+        false; 
+)
+
+# Check tsconfig standards
+npm run check:types ||
+(
+    echo 'Types error: Fix your types issues manually :P'
+    false;
+)
+
+echo '✅✅✅✅ Success ✅✅✅✅'
+echo ''
+
