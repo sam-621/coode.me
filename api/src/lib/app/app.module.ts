@@ -2,6 +2,6 @@ import { Module } from '@nestjs/common';
 import { SnippetModule } from './snippet/snippet.module';
 
 @Module({
-  imports: [SnippetModule],
+  imports: [SnippetModule]
 })
 export class AppModule {}
