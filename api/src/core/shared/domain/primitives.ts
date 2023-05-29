@@ -5,7 +5,7 @@ type Methods<T> = {
 
 type MethodsAndProperties<T> = { [key in keyof T]: T[key] };
 
-type Properties<T> = Omit<MethodsAndProperties<T>, Methods<T>>;
+type ClassProperties<T> = Omit<MethodsAndProperties<T>, Methods<T>>;
 
 type PrimitiveTypes = string | number | boolean | Date | undefined | null;
 
@@ -18,12 +18,13 @@ type ValueObjectValue<T> = T extends PrimitiveTypes
   : T extends Array<infer U>
   ? Array<ValueObjectValue<U>>
   : // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  T extends { [K in keyof Properties<T>]: infer U }
-  ? { [K in keyof Properties<T>]: ValueObjectValue<Properties<T>[K]> }
+  T extends { [K in keyof ClassProperties<T>]: infer U }
+  ? { [K in keyof ClassProperties<T>]: ValueObjectValue<ClassProperties<T>[K]> }
   : never;
 
 export type Primitives<T> = {
-  [key in keyof Properties<T>]: ValueObjectValue<T[key]>;
+  [key in keyof ClassProperties<T>]: ValueObjectValue<T[key]>;
 };
 
 export type Primitive<T> = ValueObjectValue<T>;
+export type Properties<T> = ClassProperties<T>;

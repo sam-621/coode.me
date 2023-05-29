@@ -1,14 +1,9 @@
 import { Injectable } from '@nestjs/common';
 
-import { Uuid } from '@/core/shared/domain';
+import { Primitives, Uuid, WithoutDateProperties } from '@/core/shared/domain';
 import { PrismaService } from '@/core/shared/infrastructure';
 
-import {
-  CreateSnippetInput,
-  PrimitiveSnippet,
-  SnippetRepository,
-  UpdateSnippetInput
-} from '../../domain';
+import { PrimitiveSnippet, Snippet, SnippetRepository } from '../../domain';
 
 @Injectable()
 export class SnippetPostgresRepository implements SnippetRepository {
@@ -22,18 +17,27 @@ export class SnippetPostgresRepository implements SnippetRepository {
     return this.prismaService.snippet.findMany();
   }
 
-  create(snippet: CreateSnippetInput): Promise<PrimitiveSnippet> {
-    const snippetPrimitives = snippet.toPrimitives();
+  create(snippet: Snippet): Promise<PrimitiveSnippet> {
+    const primitiveSnippet = snippet.toEssentialPrimitives();
+    const input: CreateSnippetInput = primitiveSnippet;
 
-    return this.prismaService.snippet.create({ data: snippetPrimitives });
+    return this.prismaService.snippet.create({ data: input });
   }
 
-  update(snippet: UpdateSnippetInput): Promise<PrimitiveSnippet> {
-    const snippetPrimitives = snippet.toPrimitives();
+  update(snippet: Snippet): Promise<PrimitiveSnippet> {
+    const { id, code, description, language } = snippet.toPrimitives();
+    const input: UpdateSnippetInput = {
+      code,
+      description,
+      language
+    };
 
     return this.prismaService.snippet.update({
-      data: snippetPrimitives,
-      where: { id: snippetPrimitives.id }
+      data: input,
+      where: { id }
     });
   }
 }
+
+export type CreateSnippetInput = Primitives<WithoutDateProperties<Snippet>>;
+export type UpdateSnippetInput = Omit<Primitives<WithoutDateProperties<Snippet>>, 'id' | 'userId'>;

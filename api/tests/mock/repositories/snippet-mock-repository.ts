@@ -1,10 +1,5 @@
 import { Uuid } from '@/core/shared/domain';
-import {
-  PrimitiveSnippet,
-  Snippet,
-  SnippetRepository,
-  UpdateSnippetInput
-} from '@/core/snippet/domain';
+import { PrimitiveSnippet, Snippet, SnippetRepository } from '@/core/snippet/domain';
 
 export class SnippetMockRepository implements SnippetRepository {
   async findUnique(id: Uuid): Promise<PrimitiveSnippet | null> {
@@ -22,7 +17,7 @@ export class SnippetMockRepository implements SnippetRepository {
     return snippet.toPrimitives();
   }
 
-  async update(snippet: UpdateSnippetInput): Promise<PrimitiveSnippet> {
+  async update(snippet: Snippet): Promise<PrimitiveSnippet> {
     let position = 0;
 
     const snippetFound = mockSnippets

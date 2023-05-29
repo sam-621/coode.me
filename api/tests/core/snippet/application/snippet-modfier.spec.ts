@@ -12,7 +12,6 @@ describe('Snippet Modifier', () => {
     // catch the error and not break the test
     try {
       await snippetModifier.create({
-        id: Uuid.create().value,
         userId: 'incorrect id',
         code: '',
         description: '',
@@ -30,7 +29,6 @@ describe('Snippet Modifier', () => {
     const initialLength = mockSnippets.length;
 
     await snippetModifier.create({
-      id: Uuid.create().value,
       userId: Uuid.create().value,
       code: '',
       description: '',
@@ -75,9 +73,7 @@ describe('Snippet Modifier', () => {
         description: modifiedDescription,
         language: 0
       });
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
 
     const firstMockedSnippetUpdated = mockSnippets[0];
 

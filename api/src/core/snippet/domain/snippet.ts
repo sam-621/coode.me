@@ -40,6 +40,16 @@ export class Snippet extends Entity {
       description: this.description.value
     };
   }
+
+  toEssentialPrimitives(): Primitives<WithoutDateProperties<Snippet>> {
+    return {
+      id: this.id.value,
+      userId: this.userId.value,
+      code: this.code.value,
+      language: this.language.value,
+      description: this.description.value
+    };
+  }
 }
 
 export type PrimitiveSnippet = Primitives<Snippet>;
