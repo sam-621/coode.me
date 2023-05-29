@@ -18,7 +18,8 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@/core/*": ["./src/core/*"]
+      "@/core/*": ["./src/core/*"],
+      "@/mock/*": ["./tests/mock/*"]
     }
   }
 }

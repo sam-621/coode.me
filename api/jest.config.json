@@ -9,6 +9,7 @@
   "coverageDirectory": "../coverage",
   "testEnvironment": "node",
   "moduleNameMapper": {
-    "^@/core/(.*)$": "<rootDir>/../src/core/$1"
+    "^@/core/(.*)$": "<rootDir>/../src/core/$1",
+    "^@/mock/(.*)$": "<rootDir>/../tests/mock/$1"
   }
 }

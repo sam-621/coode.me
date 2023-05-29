@@ -37,6 +37,7 @@ export class SnippetMockRepository implements SnippetRepository {
     return mockSnippets[position].toPrimitives();
   }
 }
+
 export const mockSnippets: Snippet[] = [
   snippetFactory({ code: '', description: 'snippet 1', language: 0 }),
   snippetFactory({ code: '', description: 'snippet 2', language: 0 }),
