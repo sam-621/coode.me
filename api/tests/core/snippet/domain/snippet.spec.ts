@@ -4,7 +4,13 @@ import { Snippet, SnippetDescription } from '@/core/snippet/domain';
 describe('Snippet', () => {
   it('Should throw validation error when providing incorrect id', () => {
     const t = () => {
-      Snippet.create({ id: 'incorrect id', code: '', description: '', language: '' });
+      Snippet.create({
+        id: 'incorrect id',
+        userId: 'incorrect id',
+        code: '',
+        description: '',
+        language: ''
+      });
     };
 
     expect(t).toThrow(ValidationError);
@@ -15,9 +21,11 @@ describe('Snippet', () => {
 
     const t = () => {
       const { value: uuid } = Uuid.create();
+      const { value: userId } = Uuid.create();
 
       Snippet.create({
         id: uuid,
+        userId: userId,
         code: '',
         description: DESCRIPTION_WITH_MORE_THAN_ALLOWED_CHARS,
         language: ''
@@ -29,8 +37,15 @@ describe('Snippet', () => {
 
   it('Should create a snippet when providing correct information', () => {
     const { value: uuid } = Uuid.create();
+    const { value: userId } = Uuid.create();
 
-    const snippet = Snippet.create({ id: uuid, code: '', language: '', description: '' });
+    const snippet = Snippet.create({
+      id: uuid,
+      userId: userId,
+      code: '',
+      language: '',
+      description: ''
+    });
 
     expect(snippet).toBeInstanceOf(Snippet);
   });
