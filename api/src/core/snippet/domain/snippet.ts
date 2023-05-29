@@ -20,6 +20,16 @@ export class Snippet {
       new SnippetDescription(description)
     );
   }
+
+  toPrimitives(): PrimitiveSnippet {
+    return {
+      id: this.id.value,
+      userId: this.userId.value,
+      code: this.code,
+      language: this.language,
+      description: this.description.value
+    };
+  }
 }
 
 export type PrimitiveSnippet = Primitives<Snippet>;
