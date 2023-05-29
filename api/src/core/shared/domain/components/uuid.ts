@@ -1,6 +1,6 @@
 import { v4 as uuid, validate as validateUuid } from 'uuid';
 
-import { ValidationError } from './errors';
+import { ValidationError } from '../errors';
 
 export class Uuid {
   constructor(readonly value: ID) {
