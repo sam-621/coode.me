@@ -1,7 +1,8 @@
 import { v4 as uuid, validate as validateUuid } from 'uuid';
 
 import { ValidationError } from '../errors';
-import { ValueObject } from '../value-object';
+
+import { ValueObject } from './value-object';
 
 export class Uuid extends ValueObject<string> {
   constructor(readonly value: ID) {

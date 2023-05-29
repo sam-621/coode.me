@@ -1,4 +1,4 @@
-import { ValidationError } from './errors';
+import { ValidationError } from '../errors';
 
 type Primitives = string | number | boolean | Date;
 
