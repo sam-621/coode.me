@@ -1,9 +1,11 @@
-import { ValidationError } from '@/core/shared/domain';
+import { ValidationError, ValueObject } from '@/core/shared/domain';
 
-export class SnippetDescription {
+export class SnippetDescription extends ValueObject<string> {
   static readonly DESCRIPTION_MAX_LENGTH = 160;
 
   constructor(readonly value: Description) {
+    super(value);
+
     if (!SnippetDescription.isValid(value)) {
       throw new ValidationError(SnippetDescription.invalidMessage());
     }
@@ -14,7 +16,7 @@ export class SnippetDescription {
   }
 
   public static invalidMessage() {
-    return `Description is too long. ${this.DESCRIPTION_MAX_LENGTH} chars allowed`;
+    return `Description is too long. max ${this.DESCRIPTION_MAX_LENGTH} chars allowed`;
   }
 }
 
