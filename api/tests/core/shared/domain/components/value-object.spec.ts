@@ -2,7 +2,7 @@ import { ValidationError, ValueObject } from '@/core/shared/domain';
 
 class DummyValueObject extends ValueObject<string> {}
 
-describe('Value object class', () => {
+describe('Value object', () => {
   it('Should throw validation error when providing null value', () => {
     const t = () => {
       new DummyValueObject(null as unknown as string);
