@@ -12,6 +12,19 @@ describe('Snippet description', () => {
     expect(t).toThrow(ValidationError);
   });
 
+  it('Should throw validation error when providing an undefined or null description', () => {
+    const tUndefined = () => {
+      new SnippetDescription(undefined as unknown as string);
+    };
+
+    const tNull = () => {
+      new SnippetDescription(null as unknown as string);
+    };
+
+    expect(tUndefined).toThrow(ValidationError);
+    expect(tNull).toThrow(ValidationError);
+  });
+
   it('Should create description when providing a correct description', () => {
     const description = new SnippetDescription('correct description');
 

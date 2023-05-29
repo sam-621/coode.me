@@ -1,9 +1,12 @@
 import { v4 as uuid, validate as validateUuid } from 'uuid';
 
 import { ValidationError } from '../errors';
+import { ValueObject } from '../value-object';
 
-export class Uuid {
+export class Uuid extends ValueObject<string> {
   constructor(readonly value: ID) {
+    super(value);
+
     if (!Uuid.isValid(value)) {
       throw new ValidationError(Uuid.invalidMessage(value));
     }
