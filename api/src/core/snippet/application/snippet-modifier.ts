@@ -1,11 +1,17 @@
 import { Primitives, Uuid } from '@/core/shared/domain';
 
-import { PrimitiveSnippet, Snippet, SnippetRepository, UpdateSnippetInput } from '../domain';
+import {
+  CreateSnippetInput,
+  PrimitiveSnippet,
+  Snippet,
+  SnippetRepository,
+  UpdateSnippetInput
+} from '../domain';
 
 export class SnippetModifier {
   constructor(private readonly repository: SnippetRepository) {}
 
-  create(input: PrimitiveSnippet): Promise<PrimitiveSnippet> {
+  create(input: Primitives<CreateSnippetInput>): Promise<PrimitiveSnippet> {
     const snippet = Snippet.create(input);
 
     return this.repository.create(snippet);

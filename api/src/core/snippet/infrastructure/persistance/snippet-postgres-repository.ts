@@ -3,7 +3,12 @@ import { Injectable } from '@nestjs/common';
 import { Uuid } from '@/core/shared/domain';
 import { PrismaService } from '@/core/shared/infrastructure';
 
-import { PrimitiveSnippet, Snippet, SnippetRepository, UpdateSnippetInput } from '../../domain';
+import {
+  CreateSnippetInput,
+  PrimitiveSnippet,
+  SnippetRepository,
+  UpdateSnippetInput
+} from '../../domain';
 
 @Injectable()
 export class SnippetPostgresRepository implements SnippetRepository {
@@ -17,7 +22,7 @@ export class SnippetPostgresRepository implements SnippetRepository {
     return this.prismaService.snippet.findMany();
   }
 
-  create(snippet: Snippet): Promise<PrimitiveSnippet> {
+  create(snippet: CreateSnippetInput): Promise<PrimitiveSnippet> {
     const snippetPrimitives = snippet.toPrimitives();
 
     return this.prismaService.snippet.create({ data: snippetPrimitives });

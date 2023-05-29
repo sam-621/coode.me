@@ -1,17 +1,25 @@
-import { Primitives, Uuid } from '@/core/shared/domain';
+import { Entity, Primitives, Uuid, WithoutDateProperties } from '@/core/shared/domain';
 
 import { SnippetCode, SnippetDescription, SnippetLanguage } from './components';
 
-export class Snippet {
+export class Snippet extends Entity {
   private constructor(
     readonly id: Uuid,
     readonly userId: Uuid,
     readonly code: SnippetCode,
     readonly language: SnippetLanguage,
     readonly description: SnippetDescription
-  ) {}
+  ) {
+    super(id, new Date(), new Date());
+  }
 
-  public static create({ id, userId, code, language, description }: PrimitiveSnippet) {
+  public static create({
+    id,
+    userId,
+    code,
+    language,
+    description
+  }: Primitives<WithoutDateProperties<Snippet>>) {
     return new Snippet(
       new Uuid(id),
       new Uuid(userId),
@@ -24,6 +32,8 @@ export class Snippet {
   toPrimitives(): PrimitiveSnippet {
     return {
       id: this.id.value,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
       userId: this.userId.value,
       code: this.code.value,
       language: this.language.value,
