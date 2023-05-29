@@ -7,7 +7,7 @@ export class Snippet {
     readonly id: Uuid,
     readonly userId: Uuid,
     readonly code: string,
-    readonly language: string,
+    readonly language: number,
     readonly description: SnippetDescription
   ) {}
 

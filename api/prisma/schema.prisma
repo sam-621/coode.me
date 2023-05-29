@@ -15,11 +15,11 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   username  String   @unique @db.VarChar(30)
-  position  String?  @db.VarChar(30)
-  bio       String?  @db.VarChar(160)
-  link      String?  @db.VarChar(30)
-  gh        String?  @db.VarChar(30)
-  location  String?  @db.VarChar(30)
+  position  String   @default("") @db.VarChar(30)
+  bio       String   @default("") @db.VarChar(160)
+  link      String   @default("") @db.VarChar(30)
+  gh        String   @default("") @db.VarChar(30)
+  location  String   @default("") @db.VarChar(30)
 
   // relations - one to many
   followers Follower[]
@@ -64,7 +64,7 @@ model Snippet {
   updatedAt   DateTime @updatedAt
   code        String
   language    Int      @db.SmallInt
-  description String?  @db.VarChar(160)
+  description String   @default("") @db.VarChar(160)
 
   // relations - one to many
   comments Comment[]
@@ -83,7 +83,7 @@ model List {
   updatedAt   DateTime @updatedAt
   cover       String   @db.VarChar(30)
   title       String   @db.VarChar(50)
-  description String?  @db.VarChar(160)
+  description String   @default("") @db.VarChar(160)
   isPrivate   Boolean  @default(false)
 
   // relations - one to many

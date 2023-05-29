@@ -8,8 +8,8 @@ describe('Snippet', () => {
         id: 'incorrect id',
         userId: 'incorrect id',
         code: '',
-        description: '',
-        language: ''
+        language: 0,
+        description: ''
       });
     };
 
@@ -27,8 +27,8 @@ describe('Snippet', () => {
         id: uuid,
         userId: userId,
         code: '',
-        description: DESCRIPTION_WITH_MORE_THAN_ALLOWED_CHARS,
-        language: ''
+        language: 0,
+        description: DESCRIPTION_WITH_MORE_THAN_ALLOWED_CHARS
       });
     };
 
@@ -43,7 +43,7 @@ describe('Snippet', () => {
       id: uuid,
       userId: userId,
       code: '',
-      language: '',
+      language: 0,
       description: ''
     });
 
