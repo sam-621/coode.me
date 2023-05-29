@@ -4,23 +4,30 @@
 echo 'Fixing before push in API...'
 
 # Check Prettier Standards
-npm run fix:format ||
+yarn fix:format ||
 (
     echo 'Format error: Fix your format issues running `yarn fix:format`';
     false;
 )
 
 # Check ESLint Standards
-npm run check:lint ||
+yarn check:lint ||
 (
         echo 'Linter error: Fix your linter issues running `yarn fix:lint`'
         false; 
 )
 
 # Check tsconfig standards
-npm run check:types ||
+yarn check:types ||
 (
     echo 'Types error: Fix your types issues manually :P'
+    false;
+)
+
+# Run tests api
+yarn test:api ||
+(
+    echo 'Tests error: Fix your tests issues manually :P'
     false;
 )
 
