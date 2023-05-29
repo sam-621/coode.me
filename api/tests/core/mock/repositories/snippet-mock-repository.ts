@@ -8,7 +8,7 @@ import {
 
 export class SnippetMockRepository implements SnippetRepository {
   async findUnique(id: Uuid): Promise<PrimitiveSnippet | null> {
-    const snippet = mockSnippets.find(s => s.id.value === id.value);
+    const snippet = mockSnippets.find(curr => curr.id.equals(id));
     return snippet?.toPrimitives() ?? null;
   }
 
@@ -25,7 +25,7 @@ export class SnippetMockRepository implements SnippetRepository {
   async update(snippet: UpdateSnippetInput): Promise<PrimitiveSnippet> {
     let position = 0;
     mockSnippets.forEach((curr, i) => {
-      if (curr.id.value === snippet.id.value) {
+      if (curr.id.equals(snippet.id)) {
         position = i;
         curr = {
           ...curr,

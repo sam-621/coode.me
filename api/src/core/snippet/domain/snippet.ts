@@ -1,13 +1,13 @@
 import { Primitives, Uuid } from '@/core/shared/domain';
 
-import { SnippetDescription } from './components';
+import { SnippetCode, SnippetDescription, SnippetLanguage } from './components';
 
 export class Snippet {
   private constructor(
     readonly id: Uuid,
     readonly userId: Uuid,
-    readonly code: string,
-    readonly language: number,
+    readonly code: SnippetCode,
+    readonly language: SnippetLanguage,
     readonly description: SnippetDescription
   ) {}
 
@@ -15,8 +15,8 @@ export class Snippet {
     return new Snippet(
       new Uuid(id),
       new Uuid(userId),
-      code,
-      language,
+      new SnippetCode(code),
+      new SnippetLanguage(language),
       new SnippetDescription(description)
     );
   }
@@ -25,8 +25,8 @@ export class Snippet {
     return {
       id: this.id.value,
       userId: this.userId.value,
-      code: this.code,
-      language: this.language,
+      code: this.code.value,
+      language: this.language.value,
       description: this.description.value
     };
   }
