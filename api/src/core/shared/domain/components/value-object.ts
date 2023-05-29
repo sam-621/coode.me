@@ -9,8 +9,12 @@ export abstract class ValueObject<T extends Primitives> {
     }
   }
 
-  public toString(): string {
+  toString(): string {
     return this.value.toString();
+  }
+
+  equals(other: ValueObject<T>): boolean {
+    return other.constructor.name === this.constructor.name && other.value === this.value;
   }
 
   private isValid(value: T): boolean {
