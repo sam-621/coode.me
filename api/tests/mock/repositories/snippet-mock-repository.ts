@@ -24,15 +24,20 @@ export class SnippetMockRepository implements SnippetRepository {
 
   async update(snippet: UpdateSnippetInput): Promise<PrimitiveSnippet> {
     let position = 0;
-    mockSnippets.forEach((curr, i) => {
-      if (curr.id.equals(snippet.id)) {
+
+    const snippetFound = mockSnippets
+      .find((curr, i) => {
         position = i;
-        curr = {
-          ...curr,
-          ...snippet
-        };
-      }
+        return curr.id.equals(snippet.id);
+      })
+      ?.toPrimitives();
+
+    const newSnippet = Snippet.create({
+      ...snippetFound,
+      ...snippet.toPrimitives()
     });
+
+    mockSnippets.splice(position, 1, newSnippet);
 
     return mockSnippets[position].toPrimitives();
   }

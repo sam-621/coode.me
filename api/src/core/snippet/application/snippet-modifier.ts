@@ -1,4 +1,4 @@
-import { Primitives } from '@/core/shared/domain';
+import { Primitives, Uuid } from '@/core/shared/domain';
 
 import { PrimitiveSnippet, Snippet, SnippetRepository, UpdateSnippetInput } from '../domain';
 
@@ -12,7 +12,7 @@ export class SnippetModifier {
   }
 
   update(input: Primitives<UpdateSnippetInput>): Promise<PrimitiveSnippet> {
-    const snippet = Snippet.create({ ...input, userId: '' });
+    const snippet = Snippet.create({ ...input, userId: Uuid.create().value });
 
     return this.repository.update(snippet);
   }
