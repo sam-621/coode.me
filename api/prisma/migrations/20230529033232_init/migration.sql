@@ -25,8 +25,22 @@ CREATE TABLE "Project" (
     "link" VARCHAR(30) NOT NULL,
     "content" TEXT NOT NULL,
     "featured" BOOLEAN NOT NULL DEFAULT false,
+    "userId" TEXT NOT NULL,
 
     CONSTRAINT "Project_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Snippet" (
+    "id" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "code" TEXT NOT NULL,
+    "language" SMALLINT NOT NULL,
+    "description" VARCHAR(160),
+    "userId" TEXT NOT NULL,
+
+    CONSTRAINT "Snippet_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -41,18 +55,6 @@ CREATE TABLE "List" (
     "userId" TEXT NOT NULL,
 
     CONSTRAINT "List_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "Snippet" (
-    "id" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-    "code" TEXT NOT NULL,
-    "language" SMALLINT NOT NULL,
-    "description" VARCHAR(160),
-
-    CONSTRAINT "Snippet_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -110,7 +112,7 @@ CREATE TABLE "Follower" (
     "id" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "followsTo" UUID NOT NULL,
+    "followsTo" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
 
     CONSTRAINT "Follower_pkey" PRIMARY KEY ("id")
@@ -144,6 +146,12 @@ ALTER TABLE "User" ADD CONSTRAINT "User_pronounId_fkey" FOREIGN KEY ("pronounId"
 
 -- AddForeignKey
 ALTER TABLE "User" ADD CONSTRAINT "User_languageId_fkey" FOREIGN KEY ("languageId") REFERENCES "Language"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Project" ADD CONSTRAINT "Project_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Snippet" ADD CONSTRAINT "Snippet_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "List" ADD CONSTRAINT "List_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

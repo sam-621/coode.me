@@ -23,10 +23,12 @@ model User {
 
   // relations - one to many
   followers Follower[]
+  snippets  Snippet[]
+  projects  Project[]
+  lists     List[]
   comments  Comment[]
   likes     Like[]
   saves     Save[]
-  lists     List[]
 
   // relations - many to one
   pronoun    Pronoun  @relation(fields: [pronounId], references: [id])
@@ -50,6 +52,29 @@ model Project {
   likes    Like[]
   saves    Save[]
   lists    ProjectOnList[]
+
+  // relations - many to one
+  User   User   @relation(fields: [userId], references: [id])
+  userId String
+}
+
+model Snippet {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  code        String
+  language    Int      @db.SmallInt
+  description String?  @db.VarChar(160)
+
+  // relations - one to many
+  comments Comment[]
+  likes    Like[]
+  saves    Save[]
+  lists    SnippetOnList[]
+
+  // relations - many to one
+  User   User   @relation(fields: [userId], references: [id])
+  userId String
 }
 
 model List {
@@ -71,21 +96,6 @@ model List {
   // relations - many to one
   user   User   @relation(fields: [userId], references: [id])
   userId String
-}
-
-model Snippet {
-  id          String   @id @default(uuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  code        String
-  language    Int      @db.SmallInt
-  description String?  @db.VarChar(160)
-
-  // relations - one to many
-  comments Comment[]
-  likes    Like[]
-  saves    Save[]
-  lists    SnippetOnList[]
 }
 
 model ProjectOnList {
@@ -153,7 +163,7 @@ model Follower {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  followsTo String   @db.Uuid
+  followsTo String
 
   // relations - many to one
   user   User   @relation(fields: [userId], references: [id])
