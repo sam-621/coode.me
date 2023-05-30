@@ -8,3 +8,8 @@ export const getEnvPath = (env: string): string => {
 
   return envPaths[env] || envPaths.local;
 };
+
+export enum Env {
+  PORT = 'PORT',
+  POSTGRES_URL = 'POSTGRES_URL'
+}
