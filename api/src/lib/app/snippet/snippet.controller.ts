@@ -1,4 +1,15 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Req } from '@nestjs/common';
 
-@Controller()
-export class SnippetController {}
+import { Request } from 'express';
+
+@Controller('snippet')
+export class SnippetController {
+  @Get('all')
+  getAll(@Req() req: Request) {
+    return {
+      snippets: [],
+      ok: true,
+      req: req.body
+    };
+  }
+}
