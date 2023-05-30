@@ -19,7 +19,9 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@/core/*": ["./src/core/*"],
-      "@/mock/*": ["./tests/mock/*"]
+      "@/mock/*": ["./tests/mock/*"],
+
+      "@/common/*": ["./src/lib/common/*"]
     }
   }
 }
