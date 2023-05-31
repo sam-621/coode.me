@@ -1,3 +1,4 @@
-import { errorFactory } from './errors-factory';
+import { ErrorCode } from './error-codes';
+import { errorFactory } from './error-factory';
 
-export const ValidationError = errorFactory('Validation Error');
+export const ValidationError = errorFactory(ErrorCode.VALIDATION_ERROR);

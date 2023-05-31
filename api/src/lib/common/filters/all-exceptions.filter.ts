@@ -1,6 +1,8 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
 
+import { BusinessError } from '@/core/shared/domain';
+
 import { formatHttpErrorMessage } from '../utils';
 
 @Catch()
@@ -16,6 +18,10 @@ export class AllExceptionsFilter implements ExceptionFilter {
       exception instanceof HttpException ? exception.getStatus() : HttpStatus.INTERNAL_SERVER_ERROR;
     let res = {};
 
+    console.log({
+      e: exception instanceof BusinessError
+    });
+
     if (exception instanceof HttpException) {
       const errorMessage = (exception.getResponse() as HttpGenericError).message;
       const errorName = formatHttpErrorMessage(exception.message);
@@ -28,9 +34,9 @@ export class AllExceptionsFilter implements ExceptionFilter {
       };
     }
 
-    console.log({
-      exception: exception instanceof Error
-    });
+    // console.log({
+    //   exception: exception instanceof Error
+    // });
 
     httpAdapter.reply(ctx.getResponse(), res, httpStatus);
   }
