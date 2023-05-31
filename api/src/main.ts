@@ -22,7 +22,7 @@ async function bootstrap() {
   /**
    * Server configuration
    */
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
   /**
    * Start application

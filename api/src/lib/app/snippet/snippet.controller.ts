@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 
 import { SnippetService } from './snippet.service';
 
@@ -12,6 +12,15 @@ export class SnippetController {
 
     return {
       snippets
+    };
+  }
+
+  @Get(':id')
+  async findUnique(@Param('id') id: number) {
+    return {
+      snippet: {
+        id
+      }
     };
   }
 }
