@@ -1,5 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common';
 
+import { FindUniqueParams } from './dto/snippet.dto';
 import { SnippetService } from './snippet.service';
 
 @Controller('snippet')
@@ -16,11 +17,11 @@ export class SnippetController {
   }
 
   @Get(':id')
-  async findUnique(@Param('id') id: number) {
+  async findUnique(@Param() { id }: FindUniqueParams) {
+    const snippet = await this.snippetService.findUnique(id);
+
     return {
-      snippet: {
-        id
-      }
+      snippet: snippet
     };
   }
 }
