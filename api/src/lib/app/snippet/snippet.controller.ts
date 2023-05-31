@@ -1,15 +1,17 @@
-import { Controller, Get, Req } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 
-import { Request } from 'express';
+import { SnippetService } from './snippet.service';
 
 @Controller('snippet')
 export class SnippetController {
+  constructor(private snippetService: SnippetService) {}
+
   @Get('all')
-  getAll(@Req() req: Request) {
+  async findMany() {
+    const snippets = await this.snippetService.findMany();
+
     return {
-      snippets: [],
-      ok: true,
-      req: req.body
+      snippets
     };
   }
 }

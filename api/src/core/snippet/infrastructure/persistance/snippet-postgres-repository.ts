@@ -9,7 +9,7 @@ import { PrimitiveSnippet, Snippet, SnippetRepository } from '../../domain';
 export class SnippetPostgresRepository implements SnippetRepository {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async findUnique(id: Uuid): Promise<PrimitiveSnippet | null> {
+  findUnique(id: Uuid): Promise<PrimitiveSnippet | null> {
     return this.prismaService.snippet.findUnique({ where: { id: id.value } });
   }
 

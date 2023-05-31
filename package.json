@@ -22,7 +22,6 @@
     "push": false
   },
   "dependencies": {
-    "dotenv-cli": "^7.2.1",
     "joi": "^17.9.2"
   }
 }
