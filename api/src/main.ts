@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 
 import { Env } from '@/common/config';
+import { HttpExceptionFilter } from '@/common/filters';
 
 import { AppModule } from './lib/app/app.module';
 
@@ -23,6 +24,7 @@ async function bootstrap() {
    * Server configuration
    */
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   /**
    * Start application
