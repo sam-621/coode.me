@@ -1,6 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common';
 
-import { FindUniqueParams } from '../dto/snippet.dto';
+import { FindUniqueParams } from '../dto/snippet-finder.dto';
 import { SnippetFinderService } from '../services/snippet-finder.service';
 
 @Controller('snippet')
