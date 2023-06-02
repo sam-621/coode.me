@@ -1,6 +1,10 @@
 import { Injectable } from '@nestjs/common';
 
-import { SnippetModifier, SnippetModifierCreateInput } from '@/core/snippet/application';
+import {
+  SnippetModifier,
+  SnippetModifierCreateInput,
+  SnippetModifierUpdateInput
+} from '@/core/snippet/application';
 import { SnippetPostgresRepository } from '@/core/snippet/infrastructure';
 
 @Injectable()
@@ -11,5 +15,11 @@ export class SnippetModifierService {
     const snippetModifier = new SnippetModifier(this.snippetPostgresRepository);
 
     return snippetModifier.create(input);
+  }
+
+  update(input: SnippetModifierUpdateInput) {
+    const snippetModifier = new SnippetModifier(this.snippetPostgresRepository);
+
+    return snippetModifier.update(input);
   }
 }
