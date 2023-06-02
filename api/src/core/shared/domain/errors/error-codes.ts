@@ -1,3 +1,4 @@
 export enum ErrorCode {
+  UNKNOWN_ERROR = 'UNKNOWN_ERROR',
   VALIDATION_ERROR = 'VALIDATION_ERROR'
 }

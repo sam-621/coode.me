@@ -1,3 +1,3 @@
-export type THashMap<T = unknown> = {
+export type HashMap<T = unknown> = {
   [index: string]: T;
 };

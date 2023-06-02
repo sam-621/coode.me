@@ -1,9 +1,12 @@
-import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
 
-import { BusinessError } from '@/core/shared/domain';
+import { BusinessError, ErrorCode } from '@/core/shared/domain';
 
-import { formatHttpErrorMessage } from '../utils';
+import { getStatusCodeByErrorCode } from '../errors';
+import { HttpResponse } from '../utils';
+
+const DEFAULT_ERROR_MESSAGE = 'Internal server error';
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
@@ -14,31 +17,28 @@ export class AllExceptionsFilter implements ExceptionFilter {
 
     const ctx = host.switchToHttp();
 
-    const httpStatus =
-      exception instanceof HttpException ? exception.getStatus() : HttpStatus.INTERNAL_SERVER_ERROR;
-    let res = {};
+    let res = new HttpResponse(null, [DEFAULT_ERROR_MESSAGE], ErrorCode.UNKNOWN_ERROR);
 
-    console.log({
-      e: exception instanceof BusinessError
-    });
+    // Errors throw by our domain
+    if (exception instanceof BusinessError) {
+      const { code, message } = exception;
 
-    if (exception instanceof HttpException) {
-      const errorMessage = (exception.getResponse() as HttpGenericError).message;
-      const errorName = formatHttpErrorMessage(exception.message);
-      const isErrorMessageAnArray = Array.isArray(errorMessage);
-
-      res = {
-        name: errorName,
-        message: isErrorMessageAnArray ? errorMessage : [errorMessage],
-        type: errorName
-      };
+      res = new HttpResponse(null, [message], code);
     }
 
-    // console.log({
-    //   exception: exception instanceof Error
-    // });
+    // Errors throw by the framework
+    if (exception instanceof HttpException) {
+      const errorMessage = (exception.getResponse() as HttpGenericError).message;
+      const errorCode = ErrorCode.VALIDATION_ERROR;
+      const isErrorMessageAnArray = Array.isArray(errorMessage);
+      const formattedErrorMessage = isErrorMessageAnArray ? errorMessage : [errorMessage];
 
-    httpAdapter.reply(ctx.getResponse(), res, httpStatus);
+      res = new HttpResponse(null, formattedErrorMessage, errorCode);
+    }
+
+    const statusCode = getStatusCodeByErrorCode(res?.errorCode);
+
+    httpAdapter.reply(ctx.getResponse(), res, statusCode);
   }
 }
 
