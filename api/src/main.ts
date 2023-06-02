@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 
 import { Env } from '@/common/config';
+import { LoggerService } from '@/common/errors';
 import { AllExceptionsFilter } from '@/common/filters';
 
 import { AppModule } from './lib/app/app.module';
@@ -14,19 +15,20 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   /**
+   * Server configuration
+   */
+  const httpAdapter = app.get(HttpAdapterHost);
+  const loggerService = await app.resolve(LoggerService);
+
+  app.useGlobalPipes(new ValidationPipe({ transform: true }));
+  app.useGlobalFilters(new AllExceptionsFilter(httpAdapter, loggerService));
+
+  /**
    * Env variables
    */
   const configService = app.get(ConfigService);
 
   const port = configService.get<number>(Env.PORT, { infer: true });
-
-  /**
-   * Server configuration
-   */
-  app.useGlobalPipes(new ValidationPipe({ transform: true }));
-  // app.useGlobalFilters(new HttpExceptionFilter());
-  const httpAdapter = app.get(HttpAdapterHost);
-  app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
 
   /**
    * Start application
@@ -35,4 +37,5 @@ async function bootstrap() {
     console.log(`Running on port ${port}`);
   });
 }
+
 bootstrap();
