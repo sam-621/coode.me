@@ -5,7 +5,7 @@ import { PrimitiveSnippet } from '@/core/snippet/domain';
 import { SnippetPostgresRepository } from '@/core/snippet/infrastructure';
 
 @Injectable()
-export class SnippetService {
+export class SnippetFinderService {
   constructor(private snippetPostgresRepository: SnippetPostgresRepository) {}
 
   findMany(): Promise<PrimitiveSnippet[]> {

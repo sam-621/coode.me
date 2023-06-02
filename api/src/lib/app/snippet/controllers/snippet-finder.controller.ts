@@ -1,11 +1,11 @@
 import { Controller, Get, Param } from '@nestjs/common';
 
-import { FindUniqueParams } from './dto/snippet.dto';
-import { SnippetService } from './snippet.service';
+import { FindUniqueParams } from '../dto/snippet.dto';
+import { SnippetFinderService } from '../services/snippet-finder.service';
 
 @Controller('snippet')
-export class SnippetController {
-  constructor(private snippetService: SnippetService) {}
+export class SnippetFinderController {
+  constructor(private snippetService: SnippetFinderService) {}
 
   @Get('all')
   async findMany() {

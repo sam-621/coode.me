@@ -2,12 +2,12 @@ import { Module } from '@nestjs/common';
 
 import { SnipperPostgresModule } from '@/core/snippet/infrastructure';
 
-import { SnippetController } from './snippet.controller';
-import { SnippetService } from './snippet.service';
+import { SnippetFinderController } from './controllers/snippet-finder.controller';
+import { SnippetFinderService } from './services/snippet-finder.service';
 
 @Module({
   imports: [SnipperPostgresModule],
-  controllers: [SnippetController],
-  providers: [SnippetService]
+  controllers: [SnippetFinderController],
+  providers: [SnippetFinderService]
 })
 export class SnippetModule {}
