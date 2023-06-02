@@ -23,7 +23,11 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "db:validate": "prisma validate",
     "db:migrate": "dotenv -e .env.local -- yarn prisma migrate dev",
-    "db:push": "dotenv -e .env.local -- yarn prisma db push"
+    "db:push": "dotenv -e .env.local -- yarn prisma db push",
+    "db:seed": "dotenv -e .env.local prisma db seed"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
