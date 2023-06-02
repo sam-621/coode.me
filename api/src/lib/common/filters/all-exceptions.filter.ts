@@ -1,53 +1,75 @@
-import { ArgumentsHost, Catch, ExceptionFilter, HttpException } from '@nestjs/common';
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
 
 import { BusinessError, ErrorCode } from '@/core/shared/domain';
 
-import { getStatusCodeByErrorCode } from '../errors';
-import { LoggerService } from '../errors/logger.service';
+import { formatError, getStatusCodeByErrorCode, LoggerService } from '../errors';
 import { HttpResponse } from '../utils';
 
 const DEFAULT_ERROR_MESSAGE = 'Internal server error';
+const DEFAULT_ERROR_CODE = ErrorCode.UNKNOWN_ERROR;
+const DEFAULT_STATUS_CODE = getStatusCodeByErrorCode(DEFAULT_ERROR_CODE);
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
   constructor(private readonly httpAdapterHost: HttpAdapterHost, readonly logger: LoggerService) {}
 
-  catch(exception: unknown, host: ArgumentsHost): void {
+  catch(exception: Error, host: ArgumentsHost): void {
     const { httpAdapter } = this.httpAdapterHost;
 
     const ctx = host.switchToHttp();
-
-    let res = new HttpResponse(null, [DEFAULT_ERROR_MESSAGE], ErrorCode.UNKNOWN_ERROR);
 
     // Errors throw by our domain
     if (exception instanceof BusinessError) {
       const { code, message } = exception;
 
-      res = new HttpResponse(null, [message], code);
+      this.logger.businessLog(exception, code, [message]);
 
-      this.logger.businessLog(exception, res.errorCode, res.message);
+      const res = new HttpResponse(null, [message], code);
+      const statusCode = getStatusCodeByErrorCode(res?.errorCode ?? ErrorCode.UNKNOWN_ERROR);
+
+      httpAdapter.reply(ctx.getResponse(), res, statusCode);
+      return;
     }
 
     // Errors throw by the framework
     if (exception instanceof HttpException) {
       const errorMessage = (exception.getResponse() as HttpGenericError).message;
-      const errorCode = ErrorCode.VALIDATION_ERROR;
-      const isErrorMessageAnArray = Array.isArray(errorMessage);
-      const formattedErrorMessage = isErrorMessageAnArray ? errorMessage : [errorMessage];
+      const statusCode = (exception.getResponse() as HttpGenericError).statusCode;
+      const errorCode = (exception.getResponse() as HttpGenericError).error;
 
-      res = new HttpResponse(null, formattedErrorMessage, errorCode);
+      const formattedErrorMessage = Array.isArray(errorMessage) ? errorMessage : [errorMessage];
+      const formattedErrorCode = formatError(errorCode);
 
-      this.logger.businessLog(exception, res.errorCode, res.message);
+      this.logger.businessLog(exception, formattedErrorCode, formattedErrorMessage);
+
+      const res = new HttpResponse(null, formattedErrorMessage, formattedErrorCode);
+
+      httpAdapter.reply(ctx.getResponse(), res, statusCode);
+      return;
     }
 
-    const statusCode = getStatusCodeByErrorCode(res?.errorCode);
+    // Unexpected errors
+    const errorMessage = exception.message;
+    const errorCode = formatError(exception.name);
+    const formattedErrorMessage = Array.isArray(errorMessage) ? errorMessage : [errorMessage];
 
-    httpAdapter.reply(ctx.getResponse(), res, statusCode);
+    this.logger.businessLog(exception, errorCode, formattedErrorMessage);
+
+    const res = new HttpResponse(null, [DEFAULT_ERROR_MESSAGE], DEFAULT_ERROR_CODE);
+
+    httpAdapter.reply(ctx.getResponse(), res, DEFAULT_STATUS_CODE);
   }
 }
 
 export type HttpGenericError = {
   message: string;
-  statusCode: number;
+  statusCode: HttpStatus;
+  /**
+   * Error name based on status code
+   *
+   * @example
+   * "Not Found"
+   */
+  error: string;
 };
