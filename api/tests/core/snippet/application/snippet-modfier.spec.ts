@@ -66,14 +66,12 @@ describe('Snippet Modifier', () => {
     const firstMockSnippet = mockSnippets[0];
 
     // catch the error and not break the test
-    try {
-      await snippetModifier.update({
-        id: firstMockSnippet.id.value,
-        code: '',
-        description: modifiedDescription,
-        language: 0
-      });
-    } catch (error) {}
+    await snippetModifier.update({
+      id: firstMockSnippet.id.value,
+      code: '',
+      description: modifiedDescription,
+      language: 0
+    });
 
     const firstMockedSnippetUpdated = mockSnippets[0];
 
