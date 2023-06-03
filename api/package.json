@@ -11,20 +11,27 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
+
     "check:format": "prettier --check ./src",
     "check:lint": "eslint . --ext ts --ext js",
     "check:types": "tsc --pretty --noEmit",
     "fix:lint": "eslint --ext ts --ext js --fix",
     "fix:format": "prettier --write .",
+
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    
     "test": "jest",
-    "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:unit": "yarn test tests/core",
+    "test:integration": "yarn docker:up && yarn db:migrate:test && dotenv -e .env.test -- yarn test tests/integration",
     "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    
     "db:validate": "prisma validate",
     "db:migrate": "dotenv -e .env.local -- yarn prisma migrate dev",
     "db:push": "dotenv -e .env.local -- yarn prisma db push",
-    "db:seed": "dotenv -e .env.local prisma db seed"
+    "db:seed": "dotenv -e .env.local -- prisma db seed",
+    "db:migrate:test": "dotenv -e .env.test -- yarn prisma migrate deploy"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
