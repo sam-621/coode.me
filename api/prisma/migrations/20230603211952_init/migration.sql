@@ -4,12 +4,12 @@ CREATE TABLE "User" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "username" VARCHAR(30) NOT NULL,
-    "position" VARCHAR(30),
-    "bio" VARCHAR(160),
-    "link" VARCHAR(30),
-    "gh" VARCHAR(30),
-    "location" VARCHAR(30),
-    "pronounId" TEXT NOT NULL,
+    "position" VARCHAR(30) NOT NULL DEFAULT '',
+    "bio" VARCHAR(160) NOT NULL DEFAULT '',
+    "link" VARCHAR(30) NOT NULL DEFAULT '',
+    "gh" VARCHAR(30) NOT NULL DEFAULT '',
+    "location" VARCHAR(30) NOT NULL DEFAULT '',
+    "pronounId" TEXT,
     "languageId" TEXT NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
@@ -37,7 +37,7 @@ CREATE TABLE "Snippet" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "code" TEXT NOT NULL,
     "language" SMALLINT NOT NULL,
-    "description" VARCHAR(160),
+    "description" VARCHAR(160) NOT NULL DEFAULT '',
     "userId" TEXT NOT NULL,
 
     CONSTRAINT "Snippet_pkey" PRIMARY KEY ("id")
@@ -50,7 +50,7 @@ CREATE TABLE "List" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "cover" VARCHAR(30) NOT NULL,
     "title" VARCHAR(50) NOT NULL,
-    "description" VARCHAR(160),
+    "description" VARCHAR(160) NOT NULL DEFAULT '',
     "isPrivate" BOOLEAN NOT NULL DEFAULT false,
     "userId" TEXT NOT NULL,
 
@@ -123,6 +123,7 @@ CREATE TABLE "Pronoun" (
     "id" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "content" CHAR(10) NOT NULL,
 
     CONSTRAINT "Pronoun_pkey" PRIMARY KEY ("id")
 );
@@ -142,7 +143,7 @@ CREATE TABLE "Language" (
 CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 
 -- AddForeignKey
-ALTER TABLE "User" ADD CONSTRAINT "User_pronounId_fkey" FOREIGN KEY ("pronounId") REFERENCES "Pronoun"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "User" ADD CONSTRAINT "User_pronounId_fkey" FOREIGN KEY ("pronounId") REFERENCES "Pronoun"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "User" ADD CONSTRAINT "User_languageId_fkey" FOREIGN KEY ("languageId") REFERENCES "Language"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

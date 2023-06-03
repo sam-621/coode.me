@@ -4,7 +4,7 @@ export class UserFactory {
   static readonly username = 'test';
 
   static async create() {
-    prismaClientTest.user.upsert({
+    await prismaClientTest.user.upsert({
       where: { username: this.username },
       update: {},
       create: {

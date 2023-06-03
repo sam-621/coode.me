@@ -14,7 +14,7 @@ afterAll(async () => {
   const deleteSnippets = prismaClientTest.snippet.deleteMany();
   const deleteUser = prismaClientTest.user.deleteMany();
 
-  prismaClientTest.$transaction([deleteSnippets, deleteUser]);
+  await prismaClientTest.$transaction([deleteSnippets, deleteUser]);
   await prismaClientTest.$disconnect();
 });
 
