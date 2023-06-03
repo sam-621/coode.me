@@ -11,5 +11,6 @@
   "moduleNameMapper": {
     "^@/core/(.*)$": "<rootDir>/../src/core/$1",
     "^@/mock/(.*)$": "<rootDir>/../tests/mock/$1"
-  }
+  },
+  "setupFilesAfterEnv": ["<rootDir>/mock/lib/prisma/singleton.ts"]
 }
