@@ -22,6 +22,7 @@
     "test:unit": "yarn test tests/core",
     "test:integration": "yarn docker:up && yarn db:migrate:test && dotenv -e .env.test -- yarn test tests/integration && yarn docker:down",
     "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:all": "yarn test:unit && yarn test:integration",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "db:validate": "prisma validate",
     "db:migrate": "dotenv -e .env.local -- yarn prisma migrate dev",

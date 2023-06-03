@@ -11,7 +11,7 @@
     "check:lint": "cd api && yarn check:lint",
     "fix:lint": "cd api && yarn fix_:lint",
     "fix:format": "cd api && yarn fix:format",
-    "test:api": "cd api && yarn test"
+    "test:api": "cd api && yarn test:all"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.3",
