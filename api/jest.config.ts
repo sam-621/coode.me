@@ -16,7 +16,7 @@ const config: Config = {
     '^@/common/(.*)$': '<rootDir>/../src/lib/common/$1',
     '^@/app/(.*)$': '<rootDir>/../src/lib/app/$1'
   },
-  maxConcurrency: 1
+  setupFilesAfterEnv: ['./set-up-tests.ts']
 };
 
 export default config;
