@@ -5,12 +5,12 @@ import { PrismaClient } from '@prisma/client';
 import * as request from 'supertest';
 
 import { AppModule } from '@/app/app.module';
-import { CreateSnippetDto } from '@/app/snippet/dto';
+import { CreateSnippetDto, UpdateSnippetDto } from '@/app/snippet/dto';
 import { HttpResponse } from '@/common/utils';
-import { Primitive } from '@/core/shared/domain';
+import { Primitive, Uuid } from '@/core/shared/domain';
 import { Snippet } from '@/core/snippet/domain';
 import { TestDbHandler } from '@/mock/db/db-handlers';
-import { UserFactory } from '@/mock/factory';
+import { SnippetFactory, UserFactory } from '@/mock/factory';
 
 describe('Snippet modifier', () => {
   let app: INestApplication;
@@ -53,6 +53,31 @@ describe('Snippet modifier', () => {
 
     expect(res.status).toBe(HttpStatus.CREATED);
     expect(body.data.userId).toBe(ownerId);
+    expect(true).toBe(true);
+  });
+
+  it('/PUT snippet/update', async () => {
+    const userFactory = new UserFactory(prisma);
+    const snippetFactory = new SnippetFactory(prisma);
+
+    const { id: ownerId } = await userFactory.create();
+    const { id: snippetId } = await snippetFactory.create(new Uuid(ownerId));
+
+    const dto: UpdateSnippetDto = {
+      id: snippetId,
+      code: 'code update',
+      description: 'description update',
+      language: 3
+    };
+
+    const res = await request(app.getHttpServer()).put('/snippet/update').send(dto);
+    const body: HttpResponse<Primitive<Snippet>> = res.body;
+
+    expect(res.status).toBe(HttpStatus.OK);
+    expect(body.data.userId).toBe(ownerId);
+    expect(body.data.code).toBe(dto.code);
+    expect(body.data.description).toBe(dto.description);
+    expect(body.data.language).toBe(dto.language);
     expect(true).toBe(true);
   });
 });
