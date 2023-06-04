@@ -1,5 +1,6 @@
-import { Uuid } from '@/core/shared/domain';
 import { PrismaClient } from '@prisma/client';
+
+import { Uuid } from '@/core/shared/domain';
 
 export class SnippetFactory {
   constructor(readonly prisma: PrismaClient) {}

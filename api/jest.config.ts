@@ -13,7 +13,8 @@ const config: Config = {
   moduleNameMapper: {
     '^@/core/(.*)$': '<rootDir>/../src/core/$1',
     '^@/mock/(.*)$': '<rootDir>/../tests/mock/$1'
-  }
+  },
+  maxConcurrency: 1
 };
 
 export default config;
