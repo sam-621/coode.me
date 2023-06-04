@@ -4,9 +4,9 @@ export class TestDbHandler {
   constructor(private readonly prisma: PrismaClient) {}
 
   async cleanUp() {
-    const deleteSnippet = this.prisma.snippet.deleteMany();
-    const deleteUser = this.prisma.user.deleteMany();
-
-    await this.prisma.$transaction([deleteSnippet, deleteUser]);
+    try {
+      await this.prisma.snippet.deleteMany();
+      await this.prisma.user.deleteMany();
+    } catch (error) {}
   }
 }
