@@ -5,6 +5,7 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
+  "type": "module",
   "scripts": {
     "build": "nest build",
     "start": "nest start",
@@ -18,17 +19,18 @@
     "fix:format": "prettier --write .",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
+    "env:local": "dotenv -e .env.local",
+    "env:test": "dotenv -e .env.test",
     "test": "jest",
     "test:unit": "yarn test tests/core",
-    "test:integration": "yarn docker:up && yarn db:migrate:test && dotenv -e .env.test -- yarn test tests/integration && yarn docker:down",
+    "test:integration": "yarn docker:up && yarn db:migrate:test && yarn env:test yarn test integration && yarn docker:down",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "test:all": "yarn test:unit && yarn test:integration",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "db:validate": "prisma validate",
-    "db:migrate": "dotenv -e .env.local -- yarn prisma migrate dev",
-    "db:push": "dotenv -e .env.local -- yarn prisma db push",
-    "db:seed": "dotenv -e .env.local -- prisma db seed",
-    "db:migrate:test": "dotenv -e .env.test -- yarn prisma migrate deploy"
+    "db:migrate": "yarn env:local yarn prisma migrate dev",
+    "db:push": "yarn env:local yarn prisma db push",
+    "db:seed": "yarn env:local prisma db seed",
+    "db:migrate:test": "yarn env:test node scripts/is-db-up.js && yarn env:test yarn prisma migrate deploy"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
