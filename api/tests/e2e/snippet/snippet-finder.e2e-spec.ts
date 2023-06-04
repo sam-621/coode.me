@@ -6,17 +6,17 @@ import * as request from 'supertest';
 
 import { AppModule } from '@/app/app.module';
 import { Uuid } from '@/core/shared/domain';
+import { TestDbHandler } from '@/mock/db/db-handlers';
 import { SnippetFactory, UserFactory } from '@/mock/factory';
 
 describe('Snippet finder', () => {
   let app: INestApplication;
+
   const prisma = new PrismaClient();
+  const testDbHandler = new TestDbHandler(prisma);
 
   beforeAll(async () => {
-    const deleteSnippet = prisma.snippet.deleteMany();
-    const deleteUser = prisma.user.deleteMany();
-
-    await prisma.$transaction([deleteSnippet, deleteUser]);
+    await testDbHandler.cleanUp();
 
     const userFactory = new UserFactory(prisma);
     const snippetFactory = new SnippetFactory(prisma);
@@ -36,10 +36,7 @@ describe('Snippet finder', () => {
   });
 
   afterAll(async () => {
-    const deleteSnippet = prisma.snippet.deleteMany();
-    const deleteUser = prisma.user.deleteMany();
-
-    await prisma.$transaction([deleteSnippet, deleteUser]);
+    await testDbHandler.cleanUp();
     await app.close();
   });
 
