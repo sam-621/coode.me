@@ -23,7 +23,7 @@
     "test:unit": "yarn test tests/core",
     "test:integration": "yarn docker:up && yarn db:migrate:test && yarn env:test yarn test integration && yarn docker:down",
     "test:e2e": "yarn docker:up && yarn db:migrate:test && yarn test --config ./tests/jest-e2e.json && yarn docker:down",
-    "test:all": "yarn test:unit && yarn test:integration",
+    "test:all": "yarn test:unit && yarn test:e2e",
     "db:validate": "prisma validate",
     "db:migrate": "yarn prisma migrate dev",
     "db:push": "yarn prisma db push",
