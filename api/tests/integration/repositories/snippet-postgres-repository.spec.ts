@@ -3,25 +3,31 @@ import { PrismaService } from '@/core/shared/infrastructure';
 import { Snippet } from '@/core/snippet/domain';
 import { SnippetPostgresRepository } from '@/core/snippet/infrastructure';
 import { UserFactory } from '@/mock/factory/user-factory';
-import { prismaClientTest } from '@/mock/lib/prisma';
-
-beforeAll(async () => {
-  await UserFactory.create();
-  console.log('✨ User for tests successfully created!');
-});
-
-afterAll(async () => {
-  const deleteSnippets = prismaClientTest.snippet.deleteMany();
-  const deleteUser = prismaClientTest.user.deleteMany();
-
-  await prismaClientTest.$transaction([deleteSnippets, deleteUser]);
-  await prismaClientTest.$disconnect();
-});
+import { PrismaClient, User } from '@prisma/client';
 
 describe('Snippet Postgres Repository', () => {
+  const prismaClientTest = new PrismaClient();
+
+  // TODO: Change by our user domain
+  let user: User;
+
+  beforeAll(async () => {
+    const userFactory = new UserFactory(prismaClientTest);
+    user = await userFactory.create();
+    console.log('✨ User for tests successfully created!');
+  });
+
+  afterAll(async () => {
+    const deleteSnippets = prismaClientTest.snippet.deleteMany();
+    const deleteUser = prismaClientTest.user.deleteMany();
+
+    await prismaClientTest.$transaction([deleteSnippets, deleteUser]);
+    await prismaClientTest.$disconnect();
+  });
+
   test('Should not update the snippet user id and the snippet created at when updating snippet', async () => {
     const owner = await prismaClientTest.user.findUnique({
-      where: { username: UserFactory.username }
+      where: { username: user.username }
     });
 
     const snippet = Snippet.create({

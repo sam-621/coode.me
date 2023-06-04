@@ -1,13 +1,11 @@
-import { prismaClientTest } from '../lib/prisma';
+import { PrismaClient } from '@prisma/client';
 
 export class UserFactory {
-  static readonly username = 'test';
+  constructor(private readonly prisma: PrismaClient) {}
 
-  static async create(username?: string) {
-    return await prismaClientTest.user.upsert({
-      where: { username: username ?? this.username },
-      update: {},
-      create: {
+  async create() {
+    return await this.prisma.user.create({
+      data: {
         username: 'test',
         position: 'Frontend developer',
         bio: 'As a Front-end developer, I design, develop and deliver software products to improve the world with technology.',
