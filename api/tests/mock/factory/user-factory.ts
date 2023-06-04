@@ -3,9 +3,9 @@ import { prismaClientTest } from '../lib/prisma';
 export class UserFactory {
   static readonly username = 'test';
 
-  static async create() {
-    await prismaClientTest.user.upsert({
-      where: { username: this.username },
+  static async create(username?: string) {
+    return await prismaClientTest.user.upsert({
+      where: { username: username ?? this.username },
       update: {},
       create: {
         username: 'test',
