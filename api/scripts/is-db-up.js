@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+const { PrismaClient } = require('@prisma/client');
 
 async function isDbUp() {
   const prisma = new PrismaClient({ errorFormat: 'pretty' });
