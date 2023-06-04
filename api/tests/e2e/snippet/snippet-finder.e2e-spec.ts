@@ -5,12 +5,15 @@ import { PrismaClient } from '@prisma/client';
 import * as request from 'supertest';
 
 import { AppModule } from '@/app/app.module';
-import { Uuid } from '@/core/shared/domain';
+import { HttpResponse } from '@/common/utils';
+import { Primitive, Uuid } from '@/core/shared/domain';
+import { Snippet } from '@/core/snippet/domain';
 import { TestDbHandler } from '@/mock/db/db-handlers';
 import { SnippetFactory, UserFactory } from '@/mock/factory';
 
 describe('Snippet finder', () => {
   let app: INestApplication;
+  let snippetsInDb: Primitive<Snippet>[];
 
   const prisma = new PrismaClient();
   const testDbHandler = new TestDbHandler(prisma);
@@ -22,8 +25,10 @@ describe('Snippet finder', () => {
     const snippetFactory = new SnippetFactory(prisma);
 
     const { id } = await userFactory.create();
-    snippetFactory.create(new Uuid(id));
-    snippetFactory.create(new Uuid(id));
+    snippetsInDb = [
+      await snippetFactory.create(new Uuid(id)),
+      await snippetFactory.create(new Uuid(id))
+    ];
   });
 
   beforeEach(async () => {
@@ -42,8 +47,19 @@ describe('Snippet finder', () => {
 
   it(`/GET snippet/all`, async () => {
     const res = await request(app.getHttpServer()).get('/snippet/all');
+    const body: HttpResponse<Primitive<Snippet>[]> = res.body;
 
     expect(res.status).toBe(200);
-    expect(res.body.snippets.length).toBe(2);
+    expect(body.data.length).toBe(snippetsInDb.length);
+  });
+
+  it('/GET snippet/:id', async () => {
+    const snippetToQuery = snippetsInDb[0];
+
+    const res = await request(app.getHttpServer()).get(`/snippet/${snippetToQuery.id}`);
+    const body: HttpResponse<Primitive<Snippet>> = res.body;
+
+    expect(res.status).toBe(200);
+    expect(body.data.id).toBe(snippetToQuery.id);
   });
 });

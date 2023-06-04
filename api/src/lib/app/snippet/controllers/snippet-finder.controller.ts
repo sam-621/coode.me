@@ -1,5 +1,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 
+import { HttpResponse, SUCCESS_HTTP_MESSAGE } from '@/common/utils';
+
 import { FindUniqueParams } from '../dto/snippet-finder.dto';
 import { SnippetFinderService } from '../services/snippet-finder.service';
 
@@ -11,17 +13,13 @@ export class SnippetFinderController {
   async findMany() {
     const snippets = await this.snippetFinderService.findMany();
 
-    return {
-      snippets
-    };
+    return new HttpResponse(snippets, [SUCCESS_HTTP_MESSAGE], null);
   }
 
   @Get(':id')
   async findUnique(@Param() { id }: FindUniqueParams) {
     const snippet = await this.snippetFinderService.findUnique(id);
 
-    return {
-      snippet: snippet
-    };
+    return new HttpResponse(snippet, [SUCCESS_HTTP_MESSAGE], null);
   }
 }
