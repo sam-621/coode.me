@@ -12,7 +12,9 @@ const config: Config = {
   testEnvironment: 'node',
   moduleNameMapper: {
     '^@/core/(.*)$': '<rootDir>/../src/core/$1',
-    '^@/mock/(.*)$': '<rootDir>/../tests/mock/$1'
+    '^@/mock/(.*)$': '<rootDir>/../tests/mock/$1',
+    '^@/common/(.*)$': '<rootDir>/../src/lib/common/$1',
+    '^@/app/(.*)$': '<rootDir>/../src/lib/app/$1'
   },
   maxConcurrency: 1
 };

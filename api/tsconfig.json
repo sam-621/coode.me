@@ -21,7 +21,8 @@
       "@/core/*": ["./src/core/*"],
       "@/mock/*": ["./tests/mock/*"],
 
-      "@/common/*": ["./src/lib/common/*"]
+      "@/common/*": ["./src/lib/common/*"],
+      "@/app/*": ["./src/lib/app/*"]
     }
   }
 }
