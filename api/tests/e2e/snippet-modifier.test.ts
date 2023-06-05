@@ -1,37 +1,18 @@
-import { HttpStatus, INestApplication, ValidationPipe } from '@nestjs/common';
-import { Test, TestingModule } from '@nestjs/testing';
+import { HttpStatus } from '@nestjs/common';
 
 import { PrismaClient } from '@prisma/client';
 import request from 'supertest';
-import { afterAll, beforeEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
-import { AppModule } from '@/app/app.module';
 import { CreateSnippetDto, UpdateSnippetDto } from '@/app/snippet/dto';
 import { HttpResponse } from '@/common/utils';
 import { Primitive, Uuid } from '@/core/shared/domain';
 import { Snippet } from '@/core/snippet/domain';
 import { SnippetFactory, UserFactory } from '@/utilities/factories';
+import { testNestApp } from '@/utilities/setup-e2e';
 
 describe('/snippet (snippet-modifier)', () => {
-  let app: INestApplication;
-
   const prisma = new PrismaClient();
-
-  beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule]
-    }).compile();
-
-    app = moduleFixture.createNestApplication();
-
-    app.useGlobalPipes(new ValidationPipe({ transform: true }));
-
-    await app.init();
-  });
-
-  afterAll(async () => {
-    await app.close();
-  });
 
   it(`/POST snippet/create`, async () => {
     const userFactory = new UserFactory(prisma);
@@ -44,12 +25,11 @@ describe('/snippet (snippet-modifier)', () => {
       language: 0
     };
 
-    const res = await request(app.getHttpServer()).post('/snippet/create').send(dto);
+    const res = await request(testNestApp.getHttpServer()).post('/snippet/create').send(dto);
     const body: HttpResponse<Primitive<Snippet>> = res.body;
 
     expect(res.status).toBe(HttpStatus.CREATED);
     expect(body.data.userId).toBe(ownerId);
-    expect(true).toBe(true);
   });
 
   it('/PUT snippet/update', async () => {
@@ -66,7 +46,7 @@ describe('/snippet (snippet-modifier)', () => {
       language: 3
     };
 
-    const res = await request(app.getHttpServer()).put('/snippet/update').send(dto);
+    const res = await request(testNestApp.getHttpServer()).put('/snippet/update').send(dto);
     const body: HttpResponse<Primitive<Snippet>> = res.body;
 
     expect(res.status).toBe(HttpStatus.OK);
@@ -74,6 +54,5 @@ describe('/snippet (snippet-modifier)', () => {
     expect(body.data.code).toBe(dto.code);
     expect(body.data.description).toBe(dto.description);
     expect(body.data.language).toBe(dto.language);
-    expect(true).toBe(true);
   });
 });

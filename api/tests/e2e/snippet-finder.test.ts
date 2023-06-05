@@ -1,36 +1,17 @@
-import { HttpStatus, INestApplication, ValidationPipe } from '@nestjs/common';
-import { Test, TestingModule } from '@nestjs/testing';
+import { HttpStatus } from '@nestjs/common';
 
 import { PrismaClient } from '@prisma/client';
 import request from 'supertest';
-import { afterAll, beforeEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
-import { AppModule } from '@/app/app.module';
 import { HttpResponse } from '@/common/utils';
 import { Primitive, Uuid } from '@/core/shared/domain';
 import { Snippet } from '@/core/snippet/domain';
 import { SnippetFactory, UserFactory } from '@/utilities/factories';
+import { testNestApp } from '@/utilities/setup-e2e';
 
 describe('/snippet (snippet-finder)', () => {
-  let app: INestApplication;
-
   const prisma = new PrismaClient();
-
-  beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule]
-    }).compile();
-
-    app = moduleFixture.createNestApplication();
-
-    app.useGlobalPipes(new ValidationPipe({ transform: true }));
-
-    await app.init();
-  });
-
-  afterAll(async () => {
-    await app.close();
-  });
 
   describe('/GET snippet/all', () => {
     it('Should return a list of snippets', async () => {
@@ -43,7 +24,7 @@ describe('/snippet (snippet-finder)', () => {
 
       const snippetsInDb = await prisma.snippet.count();
 
-      const res = await request(app.getHttpServer()).get('/snippet/all');
+      const res = await request(testNestApp.getHttpServer()).get('/snippet/all');
       const body: HttpResponse<Primitive<Snippet>[]> = res.body;
 
       expect(res.status).toBe(HttpStatus.OK);
@@ -62,7 +43,7 @@ describe('/snippet (snippet-finder)', () => {
 
       const snippetToQuery = await prisma.snippet.findFirst();
 
-      const res = await request(app.getHttpServer()).get(`/snippet/${snippetToQuery?.id}`);
+      const res = await request(testNestApp.getHttpServer()).get(`/snippet/${snippetToQuery?.id}`);
       const body: HttpResponse<Primitive<Snippet>> = res.body;
 
       expect(res.status).toBe(HttpStatus.OK);
@@ -79,7 +60,7 @@ describe('/snippet (snippet-finder)', () => {
 
       const randomId = Uuid.create();
 
-      const res = await request(app.getHttpServer()).get(`/snippet/${randomId}`);
+      const res = await request(testNestApp.getHttpServer()).get(`/snippet/${randomId}`);
       const body: HttpResponse<Primitive<Snippet>> = res.body;
 
       expect(res.status).toBe(HttpStatus.OK);

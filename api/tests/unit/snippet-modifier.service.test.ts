@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { SnippetModifierService } from '@/app/snippet/services';
 import { Uuid, ValidationError } from '@/core/shared/domain';
@@ -12,8 +12,6 @@ describe('snippet-modifier.service', () => {
   let snippetModifierService: SnippetModifierService;
 
   beforeEach(() => {
-    vi.restoreAllMocks();
-
     const snippetPostgresRepository = new SnippetPostgresRepository(
       prismaMock as unknown as PrismaService
     );

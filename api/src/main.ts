@@ -1,12 +1,10 @@
-import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { HttpAdapterHost, NestFactory } from '@nestjs/core';
+import { NestFactory } from '@nestjs/core';
 
 import { Env } from '@/common/config';
-import { LoggerService } from '@/common/errors';
-import { AllExceptionsFilter } from '@/common/filters';
 
 import { AppModule } from './lib/app/app.module';
+import { serverConfig } from './server-config';
 
 async function bootstrap() {
   /**
@@ -17,11 +15,7 @@ async function bootstrap() {
   /**
    * Server configuration
    */
-  const httpAdapter = app.get(HttpAdapterHost);
-  const loggerService = await app.resolve(LoggerService);
-
-  app.useGlobalPipes(new ValidationPipe({ transform: true }));
-  app.useGlobalFilters(new AllExceptionsFilter(httpAdapter, loggerService));
+  serverConfig(app);
 
   /**
    * Env variables

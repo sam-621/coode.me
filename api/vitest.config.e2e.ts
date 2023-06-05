@@ -8,7 +8,7 @@ export default defineConfig({
   test: {
     include: ['./tests/e2e/**/*.test.ts'],
     threads: false,
-    setupFiles: ['./tests/utilities/setup.ts']
+    setupFiles: ['./tests/utilities/setup-e2e.ts']
   },
   plugins: [swc.vite()]
 });
