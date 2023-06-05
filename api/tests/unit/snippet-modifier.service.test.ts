@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { SnippetModifierService } from '@/app/snippet/services';
 import { Uuid, ValidationError } from '@/core/shared/domain';
 import { PrismaService } from '@/core/shared/infrastructure';
+import { SnippetDescription } from '@/core/snippet/domain';
 import { SnippetPostgresRepository } from '@/core/snippet/infrastructure';
 import { SnippetFactory } from '@/utilities/factories';
 import { prismaMock } from '@/utilities/mocks';
@@ -31,14 +32,28 @@ describe('snippet-modifier.service', () => {
     });
 
     it('Should not create a snippet when providing incorrect data', async () => {
-      const snippetToCreate = SnippetFactory.createIncorrect();
+      const incorrectIdsSnippet = SnippetFactory.createIncorrect();
+      const incorrectDescriptionSnippet = SnippetFactory.createIncorrect({
+        id: Uuid.create().value,
+        userId: Uuid.create().value,
+        description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book`
+      });
 
-      const t = async () => {
-        await snippetModifierService.create(snippetToCreate);
-      };
+      const throwsInvalidIdsError = async () =>
+        await snippetModifierService.create(incorrectIdsSnippet);
 
-      expect(t).rejects.toThrow(ValidationError);
-      expect(t).rejects.toThrow(Uuid.invalidMessage(snippetToCreate.id));
+      const throwsInvalidDescriptionError = async () =>
+        await snippetModifierService.create(incorrectDescriptionSnippet);
+
+      expect(throwsInvalidIdsError).rejects.toThrow(ValidationError);
+      expect(throwsInvalidIdsError).rejects.toThrow(Uuid.invalidMessage(incorrectIdsSnippet.id));
+
+      expect(throwsInvalidDescriptionError).rejects.toThrow(ValidationError);
+      expect(throwsInvalidDescriptionError).rejects.toThrow(SnippetDescription.invalidMessage());
     });
+  });
+
+  describe('Update', () => {
+    it('Should update an snippet');
   });
 });

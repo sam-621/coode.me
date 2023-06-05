@@ -12,15 +12,15 @@ export class SnippetFactory {
     });
   }
 
-  static createIncorrect(): Primitive<Snippet> {
+  static createIncorrect(snippet?: Optional<Primitive<Snippet>>): Primitive<Snippet> {
     return {
-      id: 'incorrect id',
-      userId: 'incorrect id',
-      code: 'code',
-      description: 'description',
-      language: 0,
-      createdAt: new Date(),
-      updatedAt: new Date()
+      id: snippet?.id ?? 'incorrect id',
+      userId: snippet?.userId ?? 'incorrect id',
+      code: snippet?.code ?? 'code',
+      description: snippet?.description ?? 'description',
+      language: snippet?.language ?? 0,
+      createdAt: snippet?.createdAt ?? new Date(),
+      updatedAt: snippet?.updatedAt ?? new Date()
     };
   }
 }
