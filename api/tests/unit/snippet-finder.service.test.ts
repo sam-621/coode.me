@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { SnippetFinderService } from '@/app/snippet/services';
-import { Primitive } from '@/core/shared/domain';
+import { Primitive, Uuid } from '@/core/shared/domain';
 import { PrismaService } from '@/core/shared/infrastructure';
 import { Snippet } from '@/core/snippet/domain';
 import { SnippetPostgresRepository } from '@/core/snippet/infrastructure';
@@ -34,6 +34,7 @@ describe('snippet-finder.service', () => {
       expect(result[0]).toStrictEqual(snippets[0]);
       expect(result[1]).toStrictEqual(snippets[1]);
     });
+
     it('Should return an empty list of snippets', async () => {
       const snippets: Primitive<Snippet>[] = [];
 
@@ -42,6 +43,28 @@ describe('snippet-finder.service', () => {
       const result = await snippetFinderService.findMany();
 
       expect(result).toHaveLength(0);
+    });
+  });
+
+  describe('Find unique', () => {
+    it('Should return a unique snippet related to the given id', async () => {
+      const snippetToFind = SnippetFactory.create().toPrimitives();
+
+      prismaMock.snippet.findUnique.mockResolvedValue(snippetToFind);
+
+      const result = await snippetFinderService.findUnique(snippetToFind.id);
+
+      expect(result).toStrictEqual(snippetToFind);
+    });
+
+    it('Should return a null snippet when giving an id that does not exist', async () => {
+      const { value: randomId } = Uuid.create();
+
+      prismaMock.snippet.findUnique.mockResolvedValue(null);
+
+      const result = await snippetFinderService.findUnique(randomId);
+
+      expect(result).toBeNull();
     });
   });
 });
