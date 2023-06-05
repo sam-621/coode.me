@@ -6,6 +6,7 @@ export default defineConfig({
   ...globalTestsConfig,
   test: {
     include: ['./tests/e2e/**/*.test.ts'],
-    threads: false
+    threads: false,
+    setupFiles: ['./tests/setup.ts']
   }
 });
