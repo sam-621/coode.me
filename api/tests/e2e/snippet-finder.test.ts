@@ -11,7 +11,7 @@ import { Primitive, Uuid } from '@/core/shared/domain';
 import { Snippet } from '@/core/snippet/domain';
 import { SnippetFactory, UserFactory } from '@/utilities/factories';
 
-describe('snippet-finder', () => {
+describe('/snippet (snippet-finder)', () => {
   let app: INestApplication;
 
   const prisma = new PrismaClient();
