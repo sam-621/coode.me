@@ -5,6 +5,7 @@ import { globalTestsConfig } from './vitest.config.global';
 export default defineConfig({
   ...globalTestsConfig,
   test: {
-    include: ['./tests/unit/**/*.test.ts']
+    include: ['./tests/e2e/**/*.test.ts'],
+    threads: false
   }
 });
