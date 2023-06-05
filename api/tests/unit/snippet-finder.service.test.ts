@@ -57,7 +57,7 @@ describe('snippet-finder.service', () => {
       expect(result).toStrictEqual(snippetToFind);
     });
 
-    it('Should return a null snippet when giving an id that does not exist', async () => {
+    it('Should return a null snippet when providing an id that does not exist', async () => {
       const { value: randomId } = Uuid.create();
 
       prismaMock.snippet.findUnique.mockResolvedValue(null);
