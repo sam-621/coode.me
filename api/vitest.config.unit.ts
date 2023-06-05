@@ -7,7 +7,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@/core': '/src/core',
-      '@/mock': '/tests/mock',
+      '@/utilities': '/tests/utilities',
       '@/common': '/src/lib/common',
       '@/app': '/src/lib/app'
     }
