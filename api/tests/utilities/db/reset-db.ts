@@ -1,7 +1,5 @@
 import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
-
-export const resetDb = async () => {
+export const resetDb = async (prisma: PrismaClient) => {
   await prisma.$transaction([prisma.snippet.deleteMany(), prisma.user.deleteMany()]);
 };

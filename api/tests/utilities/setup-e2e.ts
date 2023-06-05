@@ -1,15 +1,15 @@
-import { INestApplication } from '@nestjs/common';
+import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 
+import { PrismaClient } from '@prisma/client';
 import { afterAll, beforeEach } from 'vitest';
 
 import { AppModule } from '@/app/app.module';
 
-import { serverConfig } from './../../src/server-config';
 import { resetDb } from './db';
 
 beforeEach(async () => {
-  await resetDb();
+  await resetDb(testPrismaClient);
 
   const moduleFixture: TestingModule = await Test.createTestingModule({
     imports: [AppModule]
@@ -17,7 +17,10 @@ beforeEach(async () => {
 
   testNestApp = moduleFixture.createNestApplication();
 
-  serverConfig(testNestApp);
+  /**
+   * Server config
+   */
+  testNestApp.useGlobalPipes(new ValidationPipe({ transform: true }));
 
   await testNestApp.init();
 });
@@ -27,3 +30,4 @@ afterAll(async () => {
 });
 
 export let testNestApp: INestApplication;
+export const testPrismaClient = new PrismaClient();
