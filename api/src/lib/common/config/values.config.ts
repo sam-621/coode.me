@@ -11,5 +11,5 @@ export const getEnvPath = (env: string): string => {
 
 export enum Env {
   PORT = 'PORT',
-  POSTGRES_URL = 'POSTGRES_URL'
+  DATABASE_URL = 'DATABASE_URL'
 }

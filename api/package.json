@@ -18,6 +18,8 @@
     "fix:format": "prettier --write .",
     "test:unit": "vitest -c ./vitest.config.unit.ts",
     "test:unit:ui": "vitest -c ./vitest.config.unit.ts --ui",
+    "test:e2e": "./scripts/run-integration.sh",
+    "test:e2e:ui": "./scripts/run-integration.sh --ui",
     "test:all": "yarn test:unit",
     "db:validate": "prisma validate",
     "db:migrate": "yarn prisma migrate dev",
