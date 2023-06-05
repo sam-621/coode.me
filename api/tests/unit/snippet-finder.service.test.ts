@@ -1,10 +1,9 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { SnippetFinderService } from '@/app/snippet/services';
-import { Uuid } from '@/core/shared/domain';
 import { PrismaService } from '@/core/shared/infrastructure';
-import { Snippet } from '@/core/snippet/domain';
 import { SnippetPostgresRepository } from '@/core/snippet/infrastructure';
+import { SnippetFactory } from '@/utilities/factories';
 import { prismaMock } from '@/utilities/mocks';
 
 describe('snippet-finder.service', () => {
@@ -22,20 +21,8 @@ describe('snippet-finder.service', () => {
   describe('Find many', () => {
     it('Should return a list of snippets', async () => {
       const snippets = [
-        Snippet.create({
-          id: Uuid.create().value,
-          userId: Uuid.create().value,
-          code: 'code',
-          language: 0,
-          description: 'description'
-        }).toPrimitives(),
-        Snippet.create({
-          id: Uuid.create().value,
-          userId: Uuid.create().value,
-          code: 'code',
-          language: 0,
-          description: 'description'
-        }).toPrimitives()
+        SnippetFactory.create().toPrimitives(),
+        SnippetFactory.create().toPrimitives()
       ];
 
       prismaMock.snippet.findMany.mockResolvedValue(snippets);
