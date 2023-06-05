@@ -18,6 +18,7 @@
     "fix:format": "prettier --write .",
     "test:unit": "vitest -c ./vitest.config.unit.ts",
     "test:unit:ui": "vitest -c ./vitest.config.unit.ts --ui",
+    "test:all": "yarn test:unit",
     "db:validate": "prisma validate",
     "db:migrate": "yarn prisma migrate dev",
     "db:push": "yarn prisma db push",

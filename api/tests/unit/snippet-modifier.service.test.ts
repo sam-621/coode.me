@@ -54,6 +54,35 @@ describe('snippet-modifier.service', () => {
   });
 
   describe('Update', () => {
-    it('Should update an snippet');
+    it('Should update an snippet when providing correct data', async () => {
+      const snippetToUpdate = SnippetFactory.create().toPrimitives();
+
+      prismaMock.snippet.update.mockResolvedValue(snippetToUpdate);
+
+      const result = await snippetModifierService.update(snippetToUpdate);
+
+      expect(result).toStrictEqual(snippetToUpdate);
+    });
+
+    it('Should not update an snippet when providing incorrect data', async () => {
+      const incorrectIdsSnippet = SnippetFactory.createIncorrect();
+      const incorrectDescriptionSnippet = SnippetFactory.createIncorrect({
+        id: Uuid.create().value,
+        userId: Uuid.create().value,
+        description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book`
+      });
+
+      const throwsInvalidIdsError = async () =>
+        await snippetModifierService.update(incorrectIdsSnippet);
+
+      const throwsInvalidDescriptionError = async () =>
+        await snippetModifierService.update(incorrectDescriptionSnippet);
+
+      expect(throwsInvalidIdsError).rejects.toThrow(ValidationError);
+      expect(throwsInvalidIdsError).rejects.toThrow(Uuid.invalidMessage(incorrectIdsSnippet.id));
+
+      expect(throwsInvalidDescriptionError).rejects.toThrow(ValidationError);
+      expect(throwsInvalidDescriptionError).rejects.toThrow(SnippetDescription.invalidMessage());
+    });
   });
 });
