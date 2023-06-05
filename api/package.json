@@ -16,6 +16,7 @@
     "check:types": "tsc --pretty --noEmit",
     "fix:lint": "eslint --ext ts --ext js --fix",
     "fix:format": "prettier --write .",
+    "test": "vitest",
     "db:validate": "prisma validate",
     "db:migrate": "yarn prisma migrate dev",
     "db:push": "yarn prisma db push",
@@ -56,6 +57,7 @@
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
     "tsconfig-paths": "4.2.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "vitest": "^0.31.4"
   }
 }
