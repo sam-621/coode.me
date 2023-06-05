@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# scripts/setenv.sh
+# set envirioment variables for tests
 
-# Export env vars
 export $(grep -v '^#' .env.test | xargs)
