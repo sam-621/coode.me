@@ -1,4 +1,4 @@
-import { IsInt, IsString, IsUUID, Length } from 'class-validator';
+import { IsInt, IsString, IsUrl, IsUUID, Length } from 'class-validator';
 
 import { SnippetModifierCreateInput, SnippetModifierUpdateInput } from '@/core/snippet/application';
 import { SnippetDescription } from '@/core/snippet/domain';
@@ -16,6 +16,9 @@ export class CreateSnippetDto implements SnippetModifierCreateInput {
 
   @IsInt()
   language: number;
+
+  @IsUrl()
+  repo: string;
 }
 
 export class UpdateSnippetDto implements SnippetModifierUpdateInput {
@@ -31,4 +34,7 @@ export class UpdateSnippetDto implements SnippetModifierUpdateInput {
 
   @IsInt()
   language: number;
+
+  @IsUrl()
+  repo: string;
 }

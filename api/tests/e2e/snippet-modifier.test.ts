@@ -20,7 +20,8 @@ describe('/snippet (snippet-modifier)', () => {
         userId: ownerId,
         code: 'code',
         description: 'description',
-        language: 0
+        language: 0,
+        repo: 'https://github.com/sam-621/coode.me'
       };
 
       const res = await request(testNestApp.getHttpServer()).post('/snippet/create').send(dto);
@@ -38,7 +39,8 @@ describe('/snippet (snippet-modifier)', () => {
         userId: 'ownerId',
         code: 0,
         description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen boo`,
-        language: '0'
+        language: '0',
+        repo: 'some invalid url'
       };
 
       const res = await request(testNestApp.getHttpServer()).post('/snippet/create').send(dto);
@@ -61,7 +63,8 @@ describe('/snippet (snippet-modifier)', () => {
         id: snippetId,
         code: 'code update',
         description: 'description update',
-        language: 3
+        language: 3,
+        repo: 'https://github.com/sam-621/portfolio'
       };
 
       const res = await request(testNestApp.getHttpServer()).put('/snippet/update').send(dto);
@@ -87,7 +90,8 @@ describe('/snippet (snippet-modifier)', () => {
         id: 'snippetId',
         code: 0,
         description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen boo`,
-        language: '3'
+        language: '3',
+        repo: 'some invalid url'
       };
 
       const res = await request(testNestApp.getHttpServer()).put('/snippet/update').send(dto);

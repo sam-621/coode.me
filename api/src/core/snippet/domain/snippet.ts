@@ -1,6 +1,6 @@
 import { Entity, Primitives, Uuid, WithoutDateProperties } from '@/core/shared/domain';
 
-import { SnippetCode, SnippetDescription, SnippetLanguage } from './components';
+import { SnippetCode, SnippetDescription, SnippetLanguage, SnippetRepo } from './components';
 
 export class Snippet extends Entity {
   private constructor(
@@ -8,7 +8,8 @@ export class Snippet extends Entity {
     readonly userId: Uuid,
     readonly code: SnippetCode,
     readonly language: SnippetLanguage,
-    readonly description: SnippetDescription
+    readonly description: SnippetDescription,
+    readonly repo: SnippetRepo
   ) {
     super(id, new Date(), new Date());
   }
@@ -18,14 +19,16 @@ export class Snippet extends Entity {
     userId,
     code,
     language,
-    description
+    description,
+    repo
   }: Primitives<WithoutDateProperties<Snippet>>) {
     return new Snippet(
       new Uuid(id),
       new Uuid(userId),
       new SnippetCode(code),
       new SnippetLanguage(language),
-      new SnippetDescription(description)
+      new SnippetDescription(description),
+      new SnippetRepo(repo)
     );
   }
 
@@ -37,7 +40,8 @@ export class Snippet extends Entity {
       userId: this.userId.value,
       code: this.code.value,
       language: this.language.value,
-      description: this.description.value
+      description: this.description.value,
+      repo: this.repo.value
     };
   }
 
@@ -47,7 +51,8 @@ export class Snippet extends Entity {
       userId: this.userId.value,
       code: this.code.value,
       language: this.language.value,
-      description: this.description.value
+      description: this.description.value,
+      repo: this.repo.value
     };
   }
 }
