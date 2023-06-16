@@ -29,12 +29,34 @@ model User {
   comments  Comment[]
   likes     Like[]
   saves     Save[]
+  topics    TopicOnUser[]
 
   // relations - many to one
   pronoun    Pronoun? @relation(fields: [pronounId], references: [id])
   pronounId  String?
   language   Language @relation(fields: [languageId], references: [id])
   languageId String
+}
+
+model Topic {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String   @db.VarChar(20)
+  description String   @db.VarChar(160)
+  color       String   @db.Char(6)
+
+  // relations - one to many
+  users TopicOnUser[]
+}
+
+model TopicOnUser {
+  User    User   @relation(fields: [userId], references: [id])
+  userId  String
+  Topic   Topic  @relation(fields: [topicId], references: [id])
+  topicId String
+
+  @@id([userId, topicId])
 }
 
 model Project {
