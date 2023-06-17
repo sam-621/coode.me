@@ -6,4 +6,4 @@ import { SnippetPostgresRepository } from './snippet-postgres-repository';
   providers: [SnippetPostgresRepository],
   exports: [SnippetPostgresRepository]
 })
-export class SnipperPostgresModule {}
+export class SnippetPostgresModule {}

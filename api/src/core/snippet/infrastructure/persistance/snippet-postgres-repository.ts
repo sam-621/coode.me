@@ -47,5 +47,5 @@ export class SnippetPostgresRepository implements SnippetRepository {
   }
 }
 
-export type CreateSnippetInput = Primitives<WithoutDateProperties<Snippet>>;
-export type UpdateSnippetInput = Omit<Primitives<WithoutDateProperties<Snippet>>, 'id' | 'userId'>;
+type CreateSnippetInput = Primitives<WithoutDateProperties<Snippet>>;
+type UpdateSnippetInput = Omit<Primitives<WithoutDateProperties<Snippet>>, 'id' | 'userId'>;
