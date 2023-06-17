@@ -60,15 +60,15 @@ model TopicOnUser {
 }
 
 model Project {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  cover     String   @db.VarChar(30)
-  title     String   @db.VarChar(50)
-  link      String   @db.VarChar(30)
-  content   String
-  featured  Boolean  @default(false)
-  repo      String   @default("")
+  id         String   @id @default(uuid())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  cover      String   @db.VarChar(30)
+  title      String   @db.VarChar(50)
+  link       String   @db.VarChar(30)
+  content    String
+  isFeatured Boolean  @default(false)
+  repo       String   @default("")
 
   // relations - one to many
   comments Comment[]
