@@ -1,15 +1,24 @@
 import { Entity, Primitives, Uuid, WithoutDateProperties } from '@/core/shared/domain';
 
+import {
+  ProjectContent,
+  ProjectCover,
+  ProjectIsFeatured,
+  ProjectLink,
+  ProjectRepo,
+  ProjectTitle
+} from './components';
+
 export class Project extends Entity {
   private constructor(
     readonly id: Uuid,
     readonly userId: Uuid,
-    readonly cover: string,
-    readonly title: string,
-    readonly link: string,
-    readonly content: string,
-    readonly isFeatured: boolean,
-    readonly repo: string
+    readonly cover: ProjectCover,
+    readonly title: ProjectTitle,
+    readonly link: ProjectLink,
+    readonly content: ProjectContent,
+    readonly isFeatured: ProjectIsFeatured,
+    readonly repo: ProjectRepo
   ) {
     super(id, new Date(), new Date());
   }
@@ -27,12 +36,12 @@ export class Project extends Entity {
     return new Project(
       new Uuid(id),
       new Uuid(userId),
-      cover,
-      title,
-      link,
-      content,
-      isFeatured,
-      repo
+      new ProjectCover(cover),
+      new ProjectTitle(title),
+      new ProjectLink(link),
+      new ProjectContent(content),
+      new ProjectIsFeatured(isFeatured),
+      new ProjectRepo(repo)
     );
   }
 
@@ -42,12 +51,12 @@ export class Project extends Entity {
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
       userId: this.userId.value,
-      cover: this.cover,
-      title: this.title,
-      link: this.link,
-      content: this.content,
-      isFeatured: this.isFeatured,
-      repo: this.repo
+      cover: this.cover.value,
+      title: this.title.value,
+      link: this.link.value,
+      content: this.content.value,
+      isFeatured: this.isFeatured.value,
+      repo: this.repo.value
     };
   }
 }
