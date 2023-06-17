@@ -5,7 +5,7 @@ import { Project } from '@/core/project/domain';
 import { ProjectPostgresRepository } from '@/core/project/infrastructure';
 import { Primitive, Uuid } from '@/core/shared/domain';
 import { PrismaService } from '@/core/shared/infrastructure';
-import { ProjectFactory } from '@/utilities/factories/project-factory';
+import { ProjectFactory } from '@/utilities/factories';
 import { prismaMock } from '@/utilities/mocks';
 
 describe('project-finder.service', () => {

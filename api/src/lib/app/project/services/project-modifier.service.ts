@@ -8,7 +8,7 @@ import {
 import { ProjectPostgresRepository } from '@/core/project/infrastructure';
 
 @Injectable()
-export class ProjectFinderService {
+export class ProjectModifierService {
   constructor(private projectPostgresRepository: ProjectPostgresRepository) {}
 
   create(input: ProjectModifierCreateInput) {
