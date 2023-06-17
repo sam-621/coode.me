@@ -25,11 +25,12 @@ export class SnippetPostgresRepository implements SnippetRepository {
   }
 
   update(snippet: Snippet): Promise<PrimitiveSnippet> {
-    const { id, code, description, language } = snippet.toPrimitives();
+    const { id, code, description, language, repo } = snippet.toPrimitives();
     const input: UpdateSnippetInput = {
       code,
       description,
-      language
+      language,
+      repo
     };
 
     return this.prismaService.snippet.update({
