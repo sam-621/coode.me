@@ -44,17 +44,6 @@ export class Snippet extends Entity {
       repo: this.repo.value
     };
   }
-
-  toEssentialPrimitives(): Primitives<WithoutDateProperties<Snippet>> {
-    return {
-      id: this.id.value,
-      userId: this.userId.value,
-      code: this.code.value,
-      language: this.language.value,
-      description: this.description.value,
-      repo: this.repo.value
-    };
-  }
 }
 
 export type PrimitiveSnippet = Primitives<Snippet>;

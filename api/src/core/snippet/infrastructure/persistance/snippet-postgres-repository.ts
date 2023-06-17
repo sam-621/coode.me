@@ -18,8 +18,15 @@ export class SnippetPostgresRepository implements SnippetRepository {
   }
 
   create(snippet: Snippet): Promise<PrimitiveSnippet> {
-    const primitiveSnippet = snippet.toEssentialPrimitives();
-    const input: CreateSnippetInput = primitiveSnippet;
+    const { code, description, id, language, repo, userId } = snippet.toPrimitives();
+    const input: CreateSnippetInput = {
+      code,
+      description,
+      id,
+      language,
+      repo,
+      userId
+    };
 
     return this.prismaService.snippet.create({ data: input });
   }
