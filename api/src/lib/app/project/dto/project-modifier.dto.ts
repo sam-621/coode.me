@@ -7,7 +7,7 @@ export class CreateProjectDto implements ProjectModifierCreateInput {
   @IsUUID('4')
   userId: string;
 
-  @IsString()
+  @IsUrl()
   @Length(0, ProjectCover.COVER_MAX_LENGTH)
   cover: string;
 

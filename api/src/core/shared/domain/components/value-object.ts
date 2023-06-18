@@ -22,6 +22,6 @@ export abstract class ValueObject<T extends Primitives> {
   }
 
   private invalidMessage(): string {
-    return 'Value must be defined';
+    return `Value must be defined`;
   }
 }
