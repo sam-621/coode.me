@@ -7,7 +7,7 @@ export class ProjectModifier {
 
   create(input: ProjectModifierCreateInput): Promise<PrimitiveProject> {
     const { value: id } = Uuid.create();
-    const project = Project.create({ ...input, id });
+    const project = Project.create({ ...input, id, isFeatured: false });
 
     return this.repository.create(project);
   }
@@ -19,5 +19,7 @@ export class ProjectModifier {
   }
 }
 
-export type ProjectModifierCreateInput = Primitives<Omit<WithoutDateProperties<Project>, 'id'>>;
+export type ProjectModifierCreateInput = Primitives<
+  Omit<WithoutDateProperties<Project>, 'id' | 'isFeatured'>
+>;
 export type ProjectModifierUpdateInput = Omit<Primitives<WithoutDateProperties<Project>>, 'userId'>;
