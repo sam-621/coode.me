@@ -7,7 +7,6 @@ export class CreateProjectDto implements ProjectModifierCreateInput {
   @IsUUID('4')
   userId: string;
 
-  @IsUrl()
   @Length(0, ProjectCover.COVER_MAX_LENGTH)
   cover: string;
 
@@ -15,14 +14,12 @@ export class CreateProjectDto implements ProjectModifierCreateInput {
   @Length(0, ProjectTitle.TITLE_MAX_LENGTH)
   title: string;
 
-  @IsUrl()
   @Length(0, ProjectLink.LINK_MAX_LENGTH)
   link: string;
 
   @IsString()
   content: string;
 
-  @IsUrl()
   @Length(0, ProjectRepo.REPO_MAX_LENGTH)
   repo: string;
 }
@@ -39,7 +36,6 @@ export class UpdateProjectDto implements ProjectModifierUpdateInput {
   @Length(0, ProjectTitle.TITLE_MAX_LENGTH)
   title: string;
 
-  @IsUrl()
   @Length(0, ProjectLink.LINK_MAX_LENGTH)
   link: string;
 
@@ -49,7 +45,6 @@ export class UpdateProjectDto implements ProjectModifierUpdateInput {
   @IsBoolean()
   isFeatured: boolean;
 
-  @IsUrl()
   @Length(0, ProjectRepo.REPO_MAX_LENGTH)
   repo: string;
 }
