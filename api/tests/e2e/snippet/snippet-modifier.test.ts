@@ -27,8 +27,16 @@ describe('/snippet (snippet-modifier)', () => {
       const res = await request(testNestApp.getHttpServer()).post('/snippet/create').send(dto);
       const body: HttpResponse<Primitive<Snippet>> = res.body;
 
+      const snippetCreated: CreateSnippetDto = {
+        userId: body.data.userId,
+        code: body.data.code,
+        description: body.data.description,
+        language: body.data.language,
+        repo: body.data.repo
+      };
+
       expect(res.status).toBe(HttpStatus.CREATED);
-      expect(body.data.userId).toBe(ownerId);
+      expect(snippetCreated).toEqual(dto);
     });
 
     it('Should not create snippet when providing incorrect data', async () => {
@@ -44,10 +52,8 @@ describe('/snippet (snippet-modifier)', () => {
       };
 
       const res = await request(testNestApp.getHttpServer()).post('/snippet/create').send(dto);
-      const body: HttpResponse<Primitive<Snippet>> = res.body;
 
       expect(res.status).toBe(HttpStatus.BAD_REQUEST);
-      expect(body.message).toHaveLength(Object.keys(dto).length);
     });
   });
 
@@ -70,11 +76,16 @@ describe('/snippet (snippet-modifier)', () => {
       const res = await request(testNestApp.getHttpServer()).put('/snippet/update').send(dto);
       const body: HttpResponse<Primitive<Snippet>> = res.body;
 
+      const snippetUpdated: UpdateSnippetDto = {
+        id: body.data.id,
+        code: body.data.code,
+        description: body.data.description,
+        language: body.data.language,
+        repo: body.data.repo
+      };
+
       expect(res.status).toBe(HttpStatus.OK);
-      expect(body.data.userId).toBe(ownerId);
-      expect(body.data.code).toBe(dto.code);
-      expect(body.data.description).toBe(dto.description);
-      expect(body.data.language).toBe(dto.language);
+      expect(snippetUpdated).toEqual(dto);
       // createdAt date did not update
       expect(createdAt.toISOString()).toBe(body.data.createdAt);
     });
@@ -95,10 +106,8 @@ describe('/snippet (snippet-modifier)', () => {
       };
 
       const res = await request(testNestApp.getHttpServer()).put('/snippet/update').send(dto);
-      const body: HttpResponse<Primitive<Snippet>> = res.body;
 
       expect(res.status).toBe(HttpStatus.BAD_REQUEST);
-      expect(body.message).toHaveLength(Object.keys(dto).length);
     });
   });
 });

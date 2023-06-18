@@ -42,9 +42,10 @@ describe('/snippet (snippet-finder)', () => {
 
       const res = await request(testNestApp.getHttpServer()).get(`/snippet/${snippetToQuery?.id}`);
       const body: HttpResponse<Primitive<Snippet>> = res.body;
+      const snippetInJson = JSON.parse(JSON.stringify(snippetToQuery));
 
       expect(res.status).toBe(HttpStatus.OK);
-      expect(body.data.id).toBe(snippetToQuery?.id);
+      expect(body.data).toEqual(snippetInJson);
     });
 
     it('Should return a null snippet when providing an id that does not exist', async () => {
