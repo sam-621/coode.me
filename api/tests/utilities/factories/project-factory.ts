@@ -11,12 +11,12 @@ export class ProjectFactory {
       data: {
         id: Uuid.create().value,
         userId: userId.value,
-        cover: 'https://cover.com',
+        cover: 'cover.com',
         title: 'Project title',
         content: 'Project content',
         isFeatured: false,
-        link: 'https://rogeliosamuel.com',
-        repo: 'https://github.com/sam-621/coode.me'
+        link: 'rogeliosamuel.com',
+        repo: 'github.com/sam-621/coode.me'
       }
     });
   }
@@ -25,12 +25,12 @@ export class ProjectFactory {
     return Project.create({
       id: project?.id ?? Uuid.create().value,
       userId: project?.userId ?? Uuid.create().value,
-      cover: project?.cover ?? 'https://cover.com',
+      cover: project?.cover ?? 'cover.com',
       title: project?.title ?? 'Project title',
       content: project?.content ?? 'Project content',
       isFeatured: project?.isFeatured ?? false,
-      link: project?.link ?? 'https://rogeliosamuel.com',
-      repo: project?.repo ?? 'https://github.com/sam-621/coode.me'
+      link: project?.link ?? 'rogeliosamuel.com',
+      repo: project?.repo ?? 'github.com/sam-621/coode.me'
     });
   }
 
