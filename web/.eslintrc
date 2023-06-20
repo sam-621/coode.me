@@ -1,0 +1,120 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "testing-library",
+    "jest-dom",
+    "@typescript-eslint",
+    "simple-import-sort",
+    "prettier",
+    "sonarjs",
+    "jsx-a11y",
+    "react-hooks",
+    "react",
+    "import"
+  ],
+  "extends": [
+    "airbnb",
+    "airbnb-base",
+    "airbnb/hooks",
+    "eslint:recommended",
+    "plugin:@next/next/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:prettier/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:testing-library/react",
+    "plugin:jest-dom/recommended",
+    "plugin:sonarjs/recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "settings": {
+    "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  "rules": {
+    "no-useless-constructor": "off",
+    "react/require-default-props": "off",
+    "react/prop-types": "off",
+    "no-use-before-define": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "@next/next/no-img-element": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] }],
+    "max-lines-per-function": ["warn", 200],
+    "import/extensions": ["error", "never"],
+    "react/jsx-props-no-spreading": "off",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "sort-imports": "off",
+    "import/order": "off",
+    "import/prefer-default-export": "off",
+    "import/no-unresolved": "off",
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": "error",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_", "ignoreRestSiblings": true }
+    ],
+    "@typescript-eslint/no-empty-function": "warn",
+    "@typescript-eslint/no-this-alias": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/function-component-definition": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true,
+        "optionalDependencies": true
+      }
+    ],
+    "accessor-pairs": "error",
+    "prettier/prettier": "error",
+    "react/no-unescaped-entities": "warn",
+    "@next/next/no-page-custom-font": "error"
+  },
+  "overrides": [
+    // override "simple-import-sort" config
+    {
+      "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
+      "rules": {
+        "simple-import-sort/imports": [
+          "error",
+          {
+            "groups": [
+              // Packages `react`, `next` (next core) packages come first.
+              ["^react$", "^next$", "^next/"],
+              // npm packages
+              ["^@?\\w"],
+              // Internal packages.
+              ["^(@|components|helpers|services|src|utils)(/.*|$)"],
+              // Side effect imports.
+              ["^\\u0000"],
+              // Parent imports. Put `..` last.
+              ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+              // Other relative imports. Put same-folder imports and `.` last.
+              ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+              // Style imports.
+              ["^.+\\.?(css)$"]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["__tests__/**/?(*.)+(spec|test).[jt]s?(x)"],
+      "extends": ["plugin:testing-library/react"]
+    },
+    {
+      "files": ["cypress/**/?(*.)+(spec|test).[jt]s?(x)", "cypress/support/*"],
+      "extends": ["plugin:cypress/recommended"],
+      "env": { "cypress/globals": true }
+    }
+  ]
+}
