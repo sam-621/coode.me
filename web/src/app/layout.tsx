@@ -1,6 +1,6 @@
 import { Inter } from 'next/font/google';
 
-import { AppProvider } from '../ui/providers/AppProviders';
+import { AppProvider } from '@/common/providers/AppProvider';
 
 import './globals.css';
 
