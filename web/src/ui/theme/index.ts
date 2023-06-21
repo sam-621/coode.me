@@ -1,5 +1,6 @@
 import { extendTheme, ThemeOverride } from '@chakra-ui/react';
 
+import { styles } from './config';
 import { colors } from './foundations';
 
 /**
@@ -7,6 +8,7 @@ import { colors } from './foundations';
  * you have to run `yarn theme` to generate the new respective types.
  */
 const customTheme: ThemeOverride = {
+  styles,
   colors
 };
 
