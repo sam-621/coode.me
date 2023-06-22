@@ -19,10 +19,10 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@/core/*": ["./src/core/*"],
-      "@/utilities/*": ["tests/utilities/*"],
+      "@/utilities/*": ["./tests/utilities/*"],
 
-      "@/common/*": ["./src/lib/common/*"],
-      "@/app/*": ["./src/lib/app/*"]
+      "@/common/*": ["./src/common/*"],
+      "@/app/*": ["./src/app/*"]
     }
   }
 }

@@ -1,6 +1,6 @@
 import { Body, Controller, Post, Put } from '@nestjs/common';
 
-import { HttpResponse, SUCCESS_HTTP_MESSAGE } from '@/common/utils';
+import { HttpResponse, SUCCESS_HTTP_MESSAGE } from 'src/common/utils';
 
 import { CreateSnippetDto, UpdateSnippetDto } from '../dto/snippet-modifier.dto';
 import { SnippetModifierService } from '../services/snippet-modifier.service';

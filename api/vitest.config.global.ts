@@ -5,8 +5,8 @@ export const globalTestsConfig: UserConfigExport = {
     alias: {
       '@/core': '/src/core',
       '@/utilities': '/tests/utilities',
-      '@/common': '/src/lib/common',
-      '@/app': '/src/lib/app'
+      '@/common': '/src/common',
+      '@/app': '/src/app'
     }
   }
 };

@@ -4,7 +4,7 @@ import request from 'supertest';
 import { describe, expect, it } from 'vitest';
 
 import { CreateSnippetDto, UpdateSnippetDto } from '@/app/snippet/dto';
-import { HttpResponse } from '@/common/utils';
+import { HttpResponse } from 'src/common/utils';
 import { Primitive, Uuid } from '@/core/shared/domain';
 import { Snippet } from '@/core/snippet/domain';
 import { SnippetFactory, UserFactory } from '@/utilities/factories';

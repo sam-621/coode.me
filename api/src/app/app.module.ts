@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 
-import { ConfigModule } from '@/common/config';
-import { LoggerModule } from '@/common/errors';
+import { ConfigModule } from 'src/common/config';
+import { LoggerModule } from 'src/common/errors';
 import { PrismaModule } from '@/core/shared/infrastructure';
 
 import { ProjectModule } from './project';

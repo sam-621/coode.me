@@ -4,7 +4,7 @@ import request from 'supertest';
 import { describe, expect, it } from 'vitest';
 
 import { CreateProjectDto, UpdateProjectDto } from '@/app/project/dto';
-import { HttpResponse } from '@/common/utils';
+import { HttpResponse } from 'src/common/utils';
 import { Project } from '@/core/project/domain';
 import { Primitive, Uuid } from '@/core/shared/domain';
 import { ProjectFactory, UserFactory } from '@/utilities/factories';

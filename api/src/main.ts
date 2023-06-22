@@ -2,11 +2,10 @@ import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 
+import { AppModule } from '@/app/app.module';
 import { Env } from '@/common/config';
 import { LoggerService } from '@/common/errors';
 import { AllExceptionsFilter } from '@/common/filters';
-
-import { AppModule } from './lib/app/app.module';
 
 async function bootstrap() {
   /**
