@@ -15,25 +15,25 @@ export const textStyles: ThemeOverride['textStyles'] = {
   },
   h3: {
     fontSize: ['1.5rem', '2rem'],
-    fontWeight: '700',
+    fontWeight: '600',
     lineHeight: '1',
     letterSpacing: '0'
   },
   h4: {
     fontSize: ['1.25rem', '1.5rem'],
-    fontWeight: '700',
+    fontWeight: '600',
     lineHeight: '1',
     letterSpacing: '0'
   },
   h5: {
     fontSize: ['1.125rem', '1.25rem'],
-    fontWeight: '700',
+    fontWeight: '500',
     lineHeight: '1',
     letterSpacing: '0'
   },
   h6: {
     fontSize: ['1rem', '1.125rem'],
-    fontWeight: '700',
+    fontWeight: '500',
     lineHeight: '1',
     letterSpacing: '0'
   },
