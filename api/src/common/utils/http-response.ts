@@ -1,4 +1,4 @@
-import { ErrorCode } from '@/core/shared/domain';
+import { ErrorCode } from '@/app/shared/domain';
 
 export const SUCCESS_HTTP_MESSAGE = 'OK';
 

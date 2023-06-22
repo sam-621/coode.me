@@ -1,4 +1,4 @@
-import { ValidationError, ValueObject } from '@/core/shared/domain';
+import { ValidationError, ValueObject } from '@/app/shared/domain';
 
 export class SnippetDescription extends ValueObject<string> {
   static readonly DESCRIPTION_MAX_LENGTH = 160;

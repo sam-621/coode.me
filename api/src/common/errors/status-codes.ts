@@ -1,6 +1,6 @@
 import { HttpStatus } from '@nestjs/common';
 
-import { ErrorCode } from '@/core/shared/domain';
+import { ErrorCode } from '@/app/shared/domain';
 
 export const getStatusCodeByErrorCode = (errorCode: ErrorCode) => {
   const DEFAULT_HTTP_STATUS_CODE = HttpStatus.INTERNAL_SERVER_ERROR;

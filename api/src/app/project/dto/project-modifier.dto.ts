@@ -1,7 +1,7 @@
 import { IsBoolean, IsString, IsUrl, IsUUID, Length } from 'class-validator';
 
 import { ProjectModifierCreateInput, ProjectModifierUpdateInput } from '@/core/project/application';
-import { ProjectCover, ProjectLink, ProjectRepo, ProjectTitle } from '@/core/project/domain';
+import { ProjectCover, ProjectLink, ProjectRepo, ProjectTitle } from '@/app/project/domain';
 
 export class CreateProjectDto implements ProjectModifierCreateInput {
   @IsUUID('4')

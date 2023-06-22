@@ -1,7 +1,7 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
 
-import { BusinessError, ErrorCode } from '@/core/shared/domain';
+import { BusinessError, ErrorCode } from '@/app/shared/domain';
 
 import { formatError, getStatusCodeByErrorCode, LoggerService } from '../errors';
 import { HttpResponse } from '../utils';

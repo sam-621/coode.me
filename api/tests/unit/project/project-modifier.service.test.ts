@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
+import { ProjectPostgresRepository } from '@/app/project/persistance';
 import { ProjectModifierService } from '@/app/project/services';
-import { ProjectPostgresRepository } from '@/core/project/infrastructure';
-import { ValidationError } from '@/core/shared/domain';
+import { ValidationError } from '@/app/shared/domain';
 import { PrismaService } from '@/core/shared/infrastructure';
 import { ProjectFactory } from '@/utilities/factories';
 import { prismaMock } from '@/utilities/mocks';

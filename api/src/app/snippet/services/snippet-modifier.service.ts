@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { Primitives, Uuid, WithoutDateProperties } from '@/core/shared/domain';
+import { Primitives, Uuid, WithoutDateProperties } from '@/app/shared/domain';
 
 import { Snippet } from '../domain';
 import { SnippetPostgresRepository } from '../persistance';
@@ -23,5 +23,5 @@ export class SnippetModifierService {
   }
 }
 
-export type SnippetModifierCreateInput = Primitives<Omit<WithoutDateProperties<Snippet>, 'id'>>;
-export type SnippetModifierUpdateInput = Omit<Primitives<WithoutDateProperties<Snippet>>, 'userId'>;
+type SnippetModifierCreateInput = Primitives<Omit<WithoutDateProperties<Snippet>, 'id'>>;
+type SnippetModifierUpdateInput = Omit<Primitives<WithoutDateProperties<Snippet>>, 'userId'>;

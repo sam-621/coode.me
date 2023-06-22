@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 
-import { Primitives, Uuid, WithoutDateProperties } from '@/core/shared/domain';
-import { PrismaService } from '@/core/shared/infrastructure';
+import { Primitives, Uuid, WithoutDateProperties } from '@/app/shared/domain';
+import { PrismaService } from '@/app/shared/persistance';
 
-import { PrimitiveProject, Project, ProjectRepository } from '../../domain';
+import { PrimitiveProject, Project, ProjectRepository } from '../domain';
 
 @Injectable()
 export class ProjectPostgresRepository implements ProjectRepository {

@@ -3,11 +3,11 @@ import { HttpStatus } from '@nestjs/common';
 import request from 'supertest';
 import { describe, expect, it } from 'vitest';
 
-import { HttpResponse } from 'src/common/utils';
-import { Primitive, Uuid } from '@/core/shared/domain';
-import { Snippet } from '@/core/snippet/domain';
+import { Primitive, Uuid } from '@/app/shared/domain';
+import { Snippet } from '@/app/snippet/domain';
 import { SnippetFactory, UserFactory } from '@/utilities/factories';
 import { testNestApp, testPrismaClient } from '@/utilities/setup-e2e';
+import { HttpResponse } from 'src/common/utils';
 
 describe('/snippet (snippet-finder)', () => {
   describe('/GET snippet/all', () => {

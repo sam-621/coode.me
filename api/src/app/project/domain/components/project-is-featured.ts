@@ -1,3 +1,3 @@
-import { ValueObject } from '@/core/shared/domain';
+import { ValueObject } from '@/app/shared/domain';
 
 export class ProjectIsFeatured extends ValueObject<boolean> {}

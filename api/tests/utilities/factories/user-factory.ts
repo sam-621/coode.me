@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 
-import { Uuid } from '@/core/shared/domain';
+import { Uuid } from '@/app/shared/domain';
 
 export class UserFactory {
   constructor(private readonly prisma: PrismaClient) {}

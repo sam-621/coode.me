@@ -1,4 +1,4 @@
-import { Entity, Primitives, Uuid, WithoutDateProperties } from '@/core/shared/domain';
+import { Entity, Primitives, Uuid, WithoutDateProperties } from '@/app/shared/domain';
 
 import {
   ProjectContent,

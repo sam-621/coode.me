@@ -1,4 +1,4 @@
-import { ValidationError, ValueObject } from '@/core/shared/domain';
+import { ValidationError, ValueObject } from '@/app/shared/domain';
 
 export class ProjectCover extends ValueObject<string> {
   static readonly COVER_MAX_LENGTH = 30;

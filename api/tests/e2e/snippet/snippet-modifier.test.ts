@@ -3,12 +3,12 @@ import { HttpStatus } from '@nestjs/common';
 import request from 'supertest';
 import { describe, expect, it } from 'vitest';
 
+import { Primitive, Uuid } from '@/app/shared/domain';
+import { Snippet } from '@/app/snippet/domain';
 import { CreateSnippetDto, UpdateSnippetDto } from '@/app/snippet/dto';
-import { HttpResponse } from 'src/common/utils';
-import { Primitive, Uuid } from '@/core/shared/domain';
-import { Snippet } from '@/core/snippet/domain';
 import { SnippetFactory, UserFactory } from '@/utilities/factories';
 import { testNestApp, testPrismaClient } from '@/utilities/setup-e2e';
+import { HttpResponse } from 'src/common/utils';
 
 describe('/snippet (snippet-modifier)', () => {
   describe(`/POST snippet/create`, () => {

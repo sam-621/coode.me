@@ -1,4 +1,4 @@
-import { Uuid } from '@/core/shared/domain';
+import { Uuid } from '@/app/shared/domain';
 
 import { PrimitiveProject, Project } from './project';
 

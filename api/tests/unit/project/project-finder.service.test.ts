@@ -1,9 +1,9 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
+import { Project } from '@/app/project/domain';
+import { ProjectPostgresRepository } from '@/app/project/persistance';
 import { ProjectFinderService } from '@/app/project/services';
-import { Project } from '@/core/project/domain';
-import { ProjectPostgresRepository } from '@/core/project/infrastructure';
-import { Primitive, Uuid } from '@/core/shared/domain';
+import { Primitive, Uuid } from '@/app/shared/domain';
 import { PrismaService } from '@/core/shared/infrastructure';
 import { ProjectFactory } from '@/utilities/factories';
 import { prismaMock } from '@/utilities/mocks';

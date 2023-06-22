@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
-import { Primitives, Uuid, WithoutDateProperties } from '@/core/shared/domain';
-import { PrismaService } from '@/core/shared/infrastructure';
+import { Primitives, Uuid, WithoutDateProperties } from '@/app/shared/domain';
+import { PrismaService } from '@/app/shared/persistance';
 
 import { PrimitiveSnippet, Snippet, SnippetRepository } from '../domain';
 

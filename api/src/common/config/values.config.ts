@@ -1,4 +1,4 @@
-import { HashMap } from '@/core/shared/domain';
+import { HashMap } from '@/app/shared/domain';
 
 export const getEnvPath = (env: string): string => {
   const envPaths: HashMap<string> = {

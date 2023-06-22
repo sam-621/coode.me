@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 
-import { Optional, Primitive, Uuid } from '@/core/shared/domain';
+import { Optional, Primitive, Uuid } from '@/app/shared/domain';
 import { Snippet } from '@/app/snippet/domain';
 
 export class SnippetFactory {

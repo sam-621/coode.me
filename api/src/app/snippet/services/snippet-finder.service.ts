@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { Uuid } from '@/core/shared/domain';
+import { Uuid } from '@/app/shared/domain';
 
 import { PrimitiveSnippet } from '../domain';
 import { SnippetPostgresRepository } from '../persistance';

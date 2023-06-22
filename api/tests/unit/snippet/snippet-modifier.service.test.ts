@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { SnippetDescription } from '@/app/snippet/domain';
 import { SnippetPostgresRepository } from '@/app/snippet/persistance';
 import { SnippetModifierService } from '@/app/snippet/services';
-import { Uuid, ValidationError } from '@/core/shared/domain';
+import { Uuid, ValidationError } from '@/app/shared/domain';
 import { PrismaService } from '@/core/shared/infrastructure';
 import { SnippetFactory } from '@/utilities/factories';
 import { prismaMock } from '@/utilities/mocks';

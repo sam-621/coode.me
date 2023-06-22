@@ -3,12 +3,12 @@ import { HttpStatus } from '@nestjs/common';
 import request from 'supertest';
 import { describe, expect, it } from 'vitest';
 
+import { Project } from '@/app/project/domain';
 import { CreateProjectDto, UpdateProjectDto } from '@/app/project/dto';
-import { HttpResponse } from 'src/common/utils';
-import { Project } from '@/core/project/domain';
-import { Primitive, Uuid } from '@/core/shared/domain';
+import { Primitive, Uuid } from '@/app/shared/domain';
 import { ProjectFactory, UserFactory } from '@/utilities/factories';
 import { testNestApp, testPrismaClient } from '@/utilities/setup-e2e';
+import { HttpResponse } from 'src/common/utils';
 
 describe('/project (project-modifier)', () => {
   describe(`/POST project/create`, () => {

@@ -1,4 +1,4 @@
-import { ValidationError, ValueObject } from '@/core/shared/domain';
+import { ValidationError, ValueObject } from '@/app/shared/domain';
 
 export class ProjectTitle extends ValueObject<string> {
   static readonly TITLE_MAX_LENGTH = 50;

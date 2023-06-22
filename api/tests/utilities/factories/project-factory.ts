@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 
-import { Project } from '@/core/project/domain';
-import { Optional, Primitive, Primitives, Uuid } from '@/core/shared/domain';
+import { Project } from '@/app/project/domain';
+import { Optional, Primitive, Primitives, Uuid } from '@/app/shared/domain';
 
 export class ProjectFactory {
   constructor(readonly prisma: PrismaClient) {}
