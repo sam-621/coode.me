@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { Primitives, Uuid, WithoutDateProperties } from '@/core/shared/domain';
 import { PrismaService } from '@/core/shared/infrastructure';
 
-import { PrimitiveSnippet, Snippet, SnippetRepository } from '../../domain';
+import { PrimitiveSnippet, Snippet, SnippetRepository } from '../domain';
 
 @Injectable()
 export class SnippetPostgresRepository implements SnippetRepository {

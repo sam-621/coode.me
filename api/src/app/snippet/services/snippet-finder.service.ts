@@ -1,22 +1,19 @@
 import { Injectable } from '@nestjs/common';
 
-import { SnippetFinder } from '@/core/snippet/application';
-import { PrimitiveSnippet } from '@/core/snippet/domain';
-import { SnippetPostgresRepository } from '@/core/snippet/infrastructure';
+import { Uuid } from '@/core/shared/domain';
+
+import { PrimitiveSnippet } from '../domain';
+import { SnippetPostgresRepository } from '../persistance';
 
 @Injectable()
 export class SnippetFinderService {
   constructor(private snippetPostgresRepository: SnippetPostgresRepository) {}
 
   findMany(): Promise<PrimitiveSnippet[]> {
-    const snippetFinder = new SnippetFinder(this.snippetPostgresRepository);
-
-    return snippetFinder.findMany();
+    return this.snippetPostgresRepository.findMany();
   }
 
   findUnique(id: string): Promise<PrimitiveSnippet | null> {
-    const snippetFinder = new SnippetFinder(this.snippetPostgresRepository);
-
-    return snippetFinder.findUnique(id);
+    return this.snippetPostgresRepository.findUnique(new Uuid(id));
   }
 }
