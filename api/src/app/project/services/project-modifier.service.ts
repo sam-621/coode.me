@@ -23,7 +23,7 @@ export class ProjectModifierService {
   }
 }
 
-type ProjectModifierCreateInput = Primitives<
+export type ProjectModifierCreateInput = Primitives<
   Omit<WithoutDateProperties<Project>, 'id' | 'isFeatured'>
 >;
-type ProjectModifierUpdateInput = Omit<Primitives<WithoutDateProperties<Project>>, 'userId'>;
+export type ProjectModifierUpdateInput = Omit<Primitives<WithoutDateProperties<Project>>, 'userId'>;

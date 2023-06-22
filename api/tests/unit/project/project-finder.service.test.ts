@@ -4,7 +4,7 @@ import { Project } from '@/app/project/domain';
 import { ProjectPostgresRepository } from '@/app/project/persistance';
 import { ProjectFinderService } from '@/app/project/services';
 import { Primitive, Uuid } from '@/app/shared/domain';
-import { PrismaService } from '@/core/shared/infrastructure';
+import { PrismaService } from '@/app/shared/persistance';
 import { ProjectFactory } from '@/utilities/factories';
 import { prismaMock } from '@/utilities/mocks';
 

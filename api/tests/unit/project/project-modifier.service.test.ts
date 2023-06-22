@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { ProjectPostgresRepository } from '@/app/project/persistance';
 import { ProjectModifierService } from '@/app/project/services';
 import { ValidationError } from '@/app/shared/domain';
-import { PrismaService } from '@/core/shared/infrastructure';
+import { PrismaService } from '@/app/shared/persistance';
 import { ProjectFactory } from '@/utilities/factories';
 import { prismaMock } from '@/utilities/mocks';
 

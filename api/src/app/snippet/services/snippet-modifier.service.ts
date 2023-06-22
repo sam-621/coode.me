@@ -23,5 +23,5 @@ export class SnippetModifierService {
   }
 }
 
-type SnippetModifierCreateInput = Primitives<Omit<WithoutDateProperties<Snippet>, 'id'>>;
-type SnippetModifierUpdateInput = Omit<Primitives<WithoutDateProperties<Snippet>>, 'userId'>;
+export type SnippetModifierCreateInput = Primitives<Omit<WithoutDateProperties<Snippet>, 'id'>>;
+export type SnippetModifierUpdateInput = Omit<Primitives<WithoutDateProperties<Snippet>>, 'userId'>;
