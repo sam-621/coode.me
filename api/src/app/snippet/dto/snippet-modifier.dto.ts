@@ -1,7 +1,6 @@
 import { IsInt, IsString, IsUrl, IsUUID, Length } from 'class-validator';
 
-import { SnippetDescription } from '@/app/snippet/domain';
-
+import { SnippetDescription } from '../domain';
 import { SnippetModifierCreateInput, SnippetModifierUpdateInput } from '../services';
 
 export class CreateSnippetDto implements SnippetModifierCreateInput {

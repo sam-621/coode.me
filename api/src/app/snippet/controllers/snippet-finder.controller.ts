@@ -1,9 +1,9 @@
 import { Controller, Get, Param } from '@nestjs/common';
 
 import { FindUniqueByIdParam } from '@/app/shared/dtos';
-import { HttpResponse, SUCCESS_HTTP_MESSAGE } from 'src/common/utils';
+import { HttpResponse, SUCCESS_HTTP_MESSAGE } from '@/common/utils';
 
-import { SnippetFinderService } from '../services/snippet-finder.service';
+import { SnippetFinderService } from '../services';
 
 @Controller('snippet')
 export class SnippetFinderController {

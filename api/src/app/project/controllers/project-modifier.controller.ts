@@ -1,6 +1,6 @@
 import { Body, Controller, Post, Put } from '@nestjs/common';
 
-import { HttpResponse, SUCCESS_HTTP_MESSAGE } from 'src/common/utils';
+import { HttpResponse, SUCCESS_HTTP_MESSAGE } from '@/common/utils';
 
 import { CreateProjectDto, UpdateProjectDto } from '../dto';
 import { ProjectModifierService } from '../services';

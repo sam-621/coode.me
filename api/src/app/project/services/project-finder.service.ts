@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 
-import { PrimitiveProject } from '@/app/project/domain';
 import { Uuid } from '@/app/shared/domain';
 
+import { PrimitiveProject } from '../domain';
 import { ProjectPostgresRepository } from '../persistance';
 
 @Injectable()
