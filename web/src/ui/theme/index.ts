@@ -1,7 +1,7 @@
 import { extendTheme, ThemeOverride } from '@chakra-ui/react';
 
 import { styles } from './config';
-import { colors } from './foundations';
+import { colors, textStyles } from './foundations';
 
 /**
  * Each time you change this config
@@ -9,7 +9,8 @@ import { colors } from './foundations';
  */
 const customTheme: ThemeOverride = {
   styles,
-  colors
+  colors,
+  textStyles
 };
 
 export const theme = extendTheme(customTheme);
