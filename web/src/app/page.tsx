@@ -1,6 +1,8 @@
 'use client';
 
-import { Box, Button, Input, Text } from '@chakra-ui/react';
+import { Box, Button, Text } from '@chakra-ui/react';
+
+import { InputContainer } from '@/ui/components/customs';
 
 export default function Home() {
   return (
@@ -29,7 +31,8 @@ export default function Home() {
       </Button>
 
       <Box mt={6}>
-        <Input placeholder="email" />
+        <InputContainer label="Email" placeholder="Enter your email" error="Wrong email" />
+        <InputContainer label="Email" placeholder="Enter your email" />
       </Box>
     </div>
   );

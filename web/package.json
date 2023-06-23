@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "theme": "chakra-cli tokens ./src/ui/theme/index.ts"
+    "theme": "chakra-cli tokens ./src/ui/theme/theme.ts"
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.1.4",

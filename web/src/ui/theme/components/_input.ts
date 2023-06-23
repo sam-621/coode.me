@@ -11,15 +11,21 @@ const CustomInput: ComponentStyleConfig = {
       borderRadius: '6px',
       height: 'auto',
       border: '1px solid',
-      borderColor: 'divider',
-      _focus: {
-        borderColor: 'text.primary'
-      }
+      borderColor: 'divider'
     }
   },
   variants: {
     default: {
       field: {
+        bg: 'bg.default',
+        _focus: {
+          borderColor: 'text.primary'
+        }
+      }
+    },
+    error: {
+      field: {
+        borderColor: 'error.500',
         bg: 'bg.default'
       }
     }
