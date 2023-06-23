@@ -1,5 +1,6 @@
 import { extendTheme, ThemeOverride } from '@chakra-ui/react';
 
+import { CustomButton } from './components';
 import { styles } from './config';
 import { breakpoints, colors, textStyles } from './foundations';
 
@@ -11,7 +12,10 @@ const customTheme: ThemeOverride = {
   styles,
   colors,
   textStyles,
-  breakpoints
+  breakpoints,
+  components: {
+    Button: CustomButton
+  }
 };
 
 export const theme = extendTheme(customTheme);
