@@ -1,8 +1,8 @@
 import { extendTheme, ThemeOverride } from '@chakra-ui/react';
 
-import { CustomButton, CustomInput } from './components';
+import { CustomButton, CustomDivider, CustomInput } from './components';
 import { styles } from './config';
-import { breakpoints, colors, textStyles } from './foundations';
+import { breakpoints, colors, fonts, textStyles } from './foundations';
 
 /**
  * Each time you change this config
@@ -13,9 +13,11 @@ const customTheme: ThemeOverride = {
   colors,
   textStyles,
   breakpoints,
+  fonts,
   components: {
     Button: CustomButton,
-    Input: CustomInput
+    Input: CustomInput,
+    Divider: CustomDivider
   }
 };
 

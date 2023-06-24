@@ -3,6 +3,8 @@ import { Public_Sans as PublicSans } from 'next/font/google';
 import { AppProvider } from '@/core/shared/providers';
 import { AppLayout } from '@/ui/components/layouts';
 
+// import './globals.css';
+
 const publicSans = PublicSans({ subsets: ['latin'] });
 
 export const metadata = {
@@ -13,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={publicSans.className} suppressHydrationWarning>
+      <body className={`${publicSans.className}`} suppressHydrationWarning>
         <AppProvider>
           <AppLayout>{children}</AppLayout>
         </AppProvider>
