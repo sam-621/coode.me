@@ -1,8 +1,8 @@
-import { HStack, Text } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react';
 
 export const GithubButton = () => {
   return (
-    <HStack spacing="0.5rem">
+    <div className="flex gap-2">
       <svg
         width="21"
         height="20"
@@ -53,6 +53,6 @@ export const GithubButton = () => {
         </defs>
       </svg>
       <Text textStyle="subtitle2">Github</Text>
-    </HStack>
+    </div>
   );
 };

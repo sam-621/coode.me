@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Stack, Text } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react';
 
 import { AppTitle } from '@/ui/components/customs';
 
@@ -8,16 +8,16 @@ import { SignInForm } from './components';
 
 export const SignInPage = () => {
   return (
-    <Stack spacing="2rem">
+    <div className="flex flex-col gap-8">
       <AppTitle />
-      <Stack spacing="2rem">
-        <Box>
+      <div className="flex flex-col gap-8">
+        <div>
           <Text as="h1" textStyle="h3">
             Sign In
           </Text>
-        </Box>
+        </div>
         <SignInForm />
-      </Stack>
-    </Stack>
+      </div>
+    </div>
   );
 };

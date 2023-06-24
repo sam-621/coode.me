@@ -1,28 +1,28 @@
-import { Box, Button, Divider, HStack, Stack, Text } from '@chakra-ui/react';
+import { Button, Divider, Text } from '@chakra-ui/react';
 
 import { GithubButton, InputContainer } from '@/ui/components/customs';
 
 export const SignInForm = () => {
   return (
-    <Stack spacing="1.5rem">
-      <Stack spacing="1.25rem">
+    <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         <InputContainer label="Email" placeholder="example@example.com" />
-        <Box className="w-full">
+        <div className="w-full">
           <Button width="100%" variant="filled" colorScheme="common.white">
             Sign in
           </Button>
-        </Box>
-      </Stack>
-      <HStack alignItems="center" spacing="0.5rem">
+        </div>
+      </div>
+      <div className="flex items-center gap-2">
         <Divider />
         <Text whiteSpace="nowrap" textStyle="body2" color="text.secondary">
           Or continue with
         </Text>
         <Divider />
-      </HStack>
-      <HStack justifyContent="center">
+      </div>
+      <div className="flex justify-center">
         <GithubButton />
-      </HStack>
-    </Stack>
+      </div>
+    </div>
   );
 };
