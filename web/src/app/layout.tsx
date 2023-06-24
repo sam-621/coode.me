@@ -3,7 +3,7 @@ import { Public_Sans as PublicSans } from 'next/font/google';
 import { AppProvider } from '@/core/shared/providers';
 import { AppLayout } from '@/ui/components/layouts';
 
-// import './globals.css';
+import './global.css';
 
 const publicSans = PublicSans({ subsets: ['latin'] });
 

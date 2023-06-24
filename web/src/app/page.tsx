@@ -7,7 +7,7 @@ import { InputContainer } from '@/ui/components/customs';
 export default function Home() {
   return (
     <div>
-      <h1>hola</h1>
+      <h1 className="text-red-600">hola</h1>
       {/* <Button>hola</Button> */}
       <Text>Text</Text>
       <Button variant="filled" colorScheme="primary">
