@@ -1,5 +1,5 @@
 import { AppTitle } from '@/ui/components/layout';
-import { CText } from '@/ui/components/lib';
+import { CText, SearchInputContainer } from '@/ui/components/lib';
 
 export const SelectTopicsPage = () => {
   return (
@@ -15,7 +15,7 @@ export const SelectTopicsPage = () => {
             you
           </CText>
         </div>
-        {/* <SignInForm /> */}
+        <SearchInputContainer />
       </div>
     </div>
   );
