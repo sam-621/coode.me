@@ -2,7 +2,7 @@
 
 import { Box, Button, Text } from '@chakra-ui/react';
 
-import { InputContainer } from '@/ui/components/customs';
+import { InputContainer } from '@/ui/components/lib';
 
 export default function Home() {
   return (
