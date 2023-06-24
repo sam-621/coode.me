@@ -1,12 +1,12 @@
 import { Manrope } from 'next/font/google';
 
-import { Text } from '@chakra-ui/react';
+import { CText } from '../lib';
 
 const manrope = Manrope({ subsets: ['latin'] });
 
 export const AppTitle = () => {
   return (
-    <Text
+    <CText
       className={manrope.className}
       textAlign="center"
       color="text.primary"
@@ -15,10 +15,10 @@ export const AppTitle = () => {
       fontWeight={700}
     >
       Coode
-      <Text as="strong" color="primary.500">
+      <CText as="strong" color="primary.500">
         .
-      </Text>
+      </CText>
       Me
-    </Text>
+    </CText>
   );
 };

@@ -1,8 +1,5 @@
-'use client';
-
-import { Text } from '@chakra-ui/react';
-
-import { AppTitle } from '@/ui/components/customs';
+import { AppTitle } from '@/ui/components/layout';
+import { CText } from '@/ui/components/lib';
 
 import { SignInForm } from './components';
 
@@ -12,9 +9,9 @@ export const SignInPage = () => {
       <AppTitle />
       <div className="flex flex-col gap-8">
         <div>
-          <Text as="h1" textStyle="h3">
+          <CText as="h1" textStyle="h3">
             Sign In
-          </Text>
+          </CText>
         </div>
         <SignInForm />
       </div>

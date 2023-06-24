@@ -1,7 +1,7 @@
 import { Public_Sans as PublicSans } from 'next/font/google';
 
 import { AppProvider } from '@/core/shared/providers';
-import { AppLayout } from '@/ui/components/layouts';
+import { AppLayout } from '@/ui/components/layout';
 
 import './global.css';
 

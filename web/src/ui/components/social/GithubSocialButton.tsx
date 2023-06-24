@@ -1,4 +1,4 @@
-import { Text } from '@chakra-ui/react';
+import { CText } from '../lib';
 
 export const GithubButton = () => {
   return (
@@ -52,7 +52,7 @@ export const GithubButton = () => {
           </clipPath>
         </defs>
       </svg>
-      <Text textStyle="subtitle2">Github</Text>
+      <CText textStyle="subtitle2">Github</CText>
     </div>
   );
 };

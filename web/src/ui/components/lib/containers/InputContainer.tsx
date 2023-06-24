@@ -1,3 +1,5 @@
+'use client';
+
 import { FC } from 'react';
 
 import { FormControl, FormErrorMessage, FormLabel, Input, Text } from '@chakra-ui/react';

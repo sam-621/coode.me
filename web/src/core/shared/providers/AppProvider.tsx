@@ -1,5 +1,3 @@
-'use client';
-
 import { FC, PropsWithChildren } from 'react';
 
 import { ThemeProvider } from '@/ui/theme';
