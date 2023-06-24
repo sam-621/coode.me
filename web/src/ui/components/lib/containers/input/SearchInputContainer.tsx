@@ -6,8 +6,8 @@ import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 export const SearchInputContainer = () => {
   return (
     <InputGroup>
-      <Input className="pr-10 rounded-full" placeholder="Search..." />
-      <InputRightElement className="pr-3 h-full">
+      <Input pr="2.5rem" rounded="full" placeholder="Search..." />
+      <InputRightElement paddingRight="0.75rem" height="100%">
         <MagnifyingGlassIcon color="white" width={16} height={16} />
       </InputRightElement>
     </InputGroup>
