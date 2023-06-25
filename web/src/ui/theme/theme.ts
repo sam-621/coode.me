@@ -1,6 +1,6 @@
 import { extendTheme, ThemeOverride } from '@chakra-ui/react';
 
-import { CustomButton, CustomDivider, CustomInput, CustomList } from './components';
+import { CustomButton, CustomCard, CustomDivider, CustomInput, CustomList } from './components';
 import { styles } from './config';
 import { breakpoints, colors, fonts, textStyles } from './foundations';
 
@@ -18,7 +18,8 @@ const customTheme: ThemeOverride = {
     Button: CustomButton,
     Input: CustomInput,
     Divider: CustomDivider,
-    List: CustomList
+    List: CustomList,
+    Card: CustomCard
   }
 };
 

@@ -1,10 +1,10 @@
-import { CButton, CText } from '../lib';
+import { CButton, CCard, CText } from '../lib';
 
 import { TopicTitle } from './TopicTitle';
 
 export const TopicCard = () => {
   return (
-    <div className="flex flex-col gap-5 rounded-lg border border-divider p-3">
+    <CCard className="flex flex-col gap-5">
       <div className="flex flex-col gap-4">
         <div className="flex justify-between items-center">
           <TopicTitle color="#562765" title="Web" />
@@ -21,6 +21,6 @@ export const TopicCard = () => {
           Follow
         </CButton>
       </div>
-    </div>
+    </CCard>
   );
 };

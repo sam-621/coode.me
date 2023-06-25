@@ -3,6 +3,7 @@
 import { Box, Button, Text } from '@chakra-ui/react';
 
 import { InputContainer } from '@/ui/components/lib';
+import { CardContainer } from '@/ui/components/lib/containers/CardContainer';
 
 export default function Home() {
   return (
@@ -34,6 +35,9 @@ export default function Home() {
         <InputContainer label="Email" placeholder="Enter your email" error="Wrong email" />
         <InputContainer label="Email" placeholder="Enter your email" />
       </Box>
+      <div className="mt-10">
+        <CardContainer />
+      </div>
     </div>
   );
 }

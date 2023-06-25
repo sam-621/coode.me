@@ -2,6 +2,7 @@
 
 export {
   Button as CButton,
+  Card as CCard,
   Divider as CDivider,
   List as CList,
   Text as CText
