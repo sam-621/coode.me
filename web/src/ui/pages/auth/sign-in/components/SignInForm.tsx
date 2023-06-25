@@ -7,7 +7,7 @@ export const SignInForm = () => {
       <div className="flex flex-col gap-5">
         <InputContainer label="Email" placeholder="example@example.com" />
         <div className="w-full">
-          <CButton width="100%" variant="filled" colorScheme="common.white">
+          <CButton size="lg" width="100%" variant="filled" colorScheme="common.white">
             Sign in
           </CButton>
         </div>

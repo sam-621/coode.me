@@ -10,14 +10,21 @@ import { textStyles } from '../foundations';
 const overrideStyles: SystemStyleInterpolation = {
   ...textStyles?.body1,
   p: '0.5rem',
-  paddingInline: '1rem',
-  height: '40px'
+  paddingInline: '1rem'
 };
 
 const CustomButton: ComponentStyleConfig = {
   baseStyle: {
     borderRadius: '8px', // 8px
     textTransform: 'capitalize'
+  },
+  sizes: {
+    md: {
+      height: '40px'
+    },
+    lg: {
+      height: '45px'
+    }
   },
   variants: {
     filled: ({ colorScheme: c }) => ({
@@ -51,7 +58,9 @@ const CustomButton: ComponentStyleConfig = {
     })
   },
   defaultProps: {
-    colorScheme: 'primary'
+    colorScheme: 'primary',
+    variant: 'filled',
+    size: 'md'
   }
 };
 

@@ -1,5 +1,5 @@
 import { AppTitle } from '@/ui/components/layout';
-import { CList, CText, SearchInputContainer } from '@/ui/components/lib';
+import { CButton, CList, CText, SearchInputContainer } from '@/ui/components/lib';
 import { TopicCard } from '@/ui/components/topic';
 
 export const SelectTopicsPage = () => {
@@ -24,6 +24,11 @@ export const SelectTopicsPage = () => {
           <TopicCard />
           <TopicCard />
         </CList>
+      </div>
+      <div className="sticky bottom-5">
+        <CButton size="lg" width="full">
+          Go to coode.me
+        </CButton>
       </div>
     </div>
   );
