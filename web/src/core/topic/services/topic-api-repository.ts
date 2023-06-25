@@ -15,8 +15,8 @@ export class TopicApiRepository extends AxiosHttpRequest implements TopicReposit
       endpoint: '/all'
     });
 
-    const topics = await this.get();
+    const topics = await this.get<Topic[]>();
 
-    return topics.data as Topic[];
+    return topics?.data.data ?? [];
   }
 }

@@ -14,6 +14,6 @@ export const TopicTitle: FC<Props> = ({ color, title }) => {
 };
 
 type Props = {
-  color: `#${number}`;
+  color: `#${string}`;
   title: string;
 };

@@ -35,13 +35,13 @@ export abstract class HttpRepository {
    */
   protected abstract urlBuilder(): string;
 
-  protected abstract get(): Promise<unknown>;
+  protected abstract get(): Promise<unknown | null>;
 
-  protected abstract post(data?: unknown): Promise<unknown>;
+  protected abstract post(data?: unknown): Promise<unknown | null>;
 
-  protected abstract put(data?: unknown): Promise<unknown>;
+  protected abstract put(data?: unknown): Promise<unknown | null>;
 
-  protected abstract delete(): Promise<unknown>;
+  protected abstract delete(): Promise<unknown | null>;
 }
 
 export type ConfigRequest = {

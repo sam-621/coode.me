@@ -13,8 +13,8 @@ export const TopicsList = async () => {
 
   return (
     <CList>
-      {topics.data.map(t => (
-        <TopicCard />
+      {topics.map(t => (
+        <TopicCard topic={t} key={t.id} />
       ))}
     </CList>
   );
