@@ -21,7 +21,7 @@ export class AxiosHttpRequest extends HttpRepository {
   }
 
   protected configRequest(config: ConfigRequest): void {
-    this.endpoint = config.endpoint;
+    this.endpoint += config.endpoint;
     this.apiDomain = config.apiDomain || this.apiDomain;
     this.headers = {
       ...this.headers,
