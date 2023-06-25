@@ -1,16 +1,27 @@
 /* eslint-disable sonarjs/no-duplicate-string */
-import { ComponentStyleConfig, defineStyleConfig } from '@chakra-ui/react';
+import {
+  ComponentStyleConfig,
+  defineStyleConfig,
+  SystemStyleInterpolation
+} from '@chakra-ui/react';
 
 import { textStyles } from '../foundations';
 
+const overrideStyles: SystemStyleInterpolation = {
+  ...textStyles?.body1,
+  p: '0.5rem',
+  paddingInline: '1rem',
+  height: '40px'
+};
+
 const CustomButton: ComponentStyleConfig = {
   baseStyle: {
-    ...textStyles?.body2,
     borderRadius: '8px', // 8px
     textTransform: 'capitalize'
   },
   variants: {
     filled: ({ colorScheme: c }) => ({
+      ...overrideStyles,
       bg: `${c}.500`,
       color: c === 'common.white' ? 'common.black' : undefined,
       _hover: {
@@ -21,6 +32,7 @@ const CustomButton: ComponentStyleConfig = {
       }
     }),
     outline: ({ colorScheme: c }) => ({
+      ...overrideStyles,
       _hover: {
         bg: `${c}.16%`
       },
@@ -29,6 +41,7 @@ const CustomButton: ComponentStyleConfig = {
       }
     }),
     ghost: ({ colorScheme: c }) => ({
+      ...overrideStyles,
       _hover: {
         bg: `${c}.16%`
       },

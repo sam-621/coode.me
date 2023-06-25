@@ -14,7 +14,7 @@ export const SignInForm = () => {
       </div>
       <div className="flex items-center gap-2">
         <CDivider />
-        <CText whiteSpace="nowrap" textStyle="body2" color="text.secondary">
+        <CText whiteSpace="nowrap" textStyle="body1" color="text.secondary">
           Or continue with
         </CText>
         <CDivider />

@@ -5,7 +5,7 @@ import { textStyles } from '../foundations';
 const CustomInput: ComponentStyleConfig = {
   baseStyle: {
     field: {
-      ...textStyles?.body2,
+      ...textStyles?.body1,
       p: '0.75rem',
       width: '100%',
       borderRadius: '6px',

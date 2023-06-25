@@ -2,7 +2,7 @@ import { CText } from '../lib';
 
 export const GithubButton = () => {
   return (
-    <div className="flex gap-2">
+    <div className="flex items-center gap-2">
       <svg
         width="21"
         height="20"
@@ -52,7 +52,7 @@ export const GithubButton = () => {
           </clipPath>
         </defs>
       </svg>
-      <CText textStyle="subtitle2">Github</CText>
+      <CText textStyle="subtitle1">Github</CText>
     </div>
   );
 };
