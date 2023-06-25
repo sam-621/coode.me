@@ -1,3 +1,5 @@
+'use client';
+
 import { createContext, FC, PropsWithChildren, useCallback, useContext } from 'react';
 
 import { TopicGetter } from '../application/topic-getter';

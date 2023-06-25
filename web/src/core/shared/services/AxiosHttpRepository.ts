@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { API_DOMAIN, ConfigRequest, Env, Headers, HttpRepository } from '../domain';
+import { API_DOMAIN, ConfigRequest, Headers, HttpRepository } from '../domain';
 
 const UNEXPECTED_ERROR_OCCURRED = 'An unexpected error occurred';
 
@@ -14,7 +14,7 @@ export class AxiosHttpRequest extends HttpRepository {
   constructor() {
     super();
     this.endpoint = '';
-    this.apiDomain = Env.get(API_DOMAIN);
+    this.apiDomain = API_DOMAIN;
     this.headers = {
       'Content-Type': 'application/json'
     };
