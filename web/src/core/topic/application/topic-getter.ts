@@ -1,7 +1,7 @@
 import { Topic, TopicRepository } from '../domain';
 
 export class TopicGetter {
-  constructor(readonly repository: TopicRepository) {}
+  constructor(private readonly repository: TopicRepository) {}
 
   getAll(): Promise<Topic[]> {
     return this.repository.getAll();

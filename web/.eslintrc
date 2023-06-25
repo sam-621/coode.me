@@ -39,6 +39,7 @@
     }
   },
   "rules": {
+    "react/jsx-no-constructed-context-values": "off",
     "no-useless-constructor": "off",
     "react/require-default-props": "off",
     "react/prop-types": "off",
