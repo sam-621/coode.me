@@ -10,7 +10,7 @@ export class TopicApiRepository extends AxiosHttpRequest implements TopicReposit
     });
   }
 
-  async findMany(): Promise<Topic[]> {
+  async getAll(): Promise<Topic[]> {
     this.configRequest({
       endpoint: '/all'
     });
