@@ -12,7 +12,7 @@ export class Topic extends Entity {
     super(id, new Date(), new Date());
   }
 
-  create({ id, title, description, color }: Primitives<WithoutDateProperties<Topic>>) {
+  static create({ id, title, description, color }: Primitives<WithoutDateProperties<Topic>>) {
     return new Topic(
       new Uuid(id),
       new TopicTitle(title),
