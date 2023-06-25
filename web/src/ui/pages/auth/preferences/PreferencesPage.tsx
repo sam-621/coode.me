@@ -2,7 +2,7 @@ import { AppTitle } from '@/ui/components/layout';
 import { CButton, CList, CText, SearchInputContainer } from '@/ui/components/lib';
 import { TopicCard } from '@/ui/components/topic';
 
-export const SelectTopicsPage = () => {
+export const PreferencesPage = () => {
   return (
     <div className="flex flex-col gap-8">
       <AppTitle />

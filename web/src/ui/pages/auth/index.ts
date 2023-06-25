@@ -1,2 +1,2 @@
-export * from './select-topics';
+export * from './preferences';
 export * from './sign-in';
