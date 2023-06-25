@@ -1,6 +1,6 @@
 import { AppTitle } from '@/ui/components/layout';
-import { CButton, CList, CText, SearchInputContainer } from '@/ui/components/lib';
-import { TopicCard } from '@/ui/components/topic';
+import { CButton, CText, SearchInputContainer } from '@/ui/components/lib';
+import { TopicsList } from '@/ui/components/topic';
 
 export const PreferencesPage = () => {
   return (
@@ -17,13 +17,7 @@ export const PreferencesPage = () => {
           </CText>
         </div>
         <SearchInputContainer />
-        <CList>
-          <TopicCard />
-          <TopicCard />
-          <TopicCard />
-          <TopicCard />
-          <TopicCard />
-        </CList>
+        <TopicsList />
       </div>
       <div className="sticky bottom-5">
         <CButton size="lg" width="full">
