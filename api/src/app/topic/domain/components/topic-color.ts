@@ -20,4 +20,4 @@ export class TopicColor extends ValueObject<string> {
   }
 }
 
-type Color = `#${number}`;
+type Color = string;

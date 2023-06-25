@@ -1,5 +1,5 @@
-import { Topic } from './topic';
+import { PrimitiveTopic } from './topic';
 
 export interface TopicRepository {
-  findMany(): Promise<Topic[]>;
+  findMany(): Promise<PrimitiveTopic[]>;
 }
