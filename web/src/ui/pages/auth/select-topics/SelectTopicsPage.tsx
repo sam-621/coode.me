@@ -1,5 +1,5 @@
 import { AppTitle } from '@/ui/components/layout';
-import { CText, SearchInputContainer } from '@/ui/components/lib';
+import { CList, CText, SearchInputContainer } from '@/ui/components/lib';
 import { TopicCard } from '@/ui/components/topic';
 
 export const SelectTopicsPage = () => {
@@ -17,13 +17,13 @@ export const SelectTopicsPage = () => {
           </CText>
         </div>
         <SearchInputContainer />
-        <div className="flex flex-col gap-5">
+        <CList>
           <TopicCard />
           <TopicCard />
           <TopicCard />
           <TopicCard />
           <TopicCard />
-        </div>
+        </CList>
       </div>
     </div>
   );
