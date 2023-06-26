@@ -7,7 +7,7 @@ import { TopicPostgresRepository } from '../persistance';
 export class TopicFinderService {
   constructor(private topicPostgresRepository: TopicPostgresRepository) {}
 
-  findMany(): Promise<PrimitiveTopic[]> {
+  async findMany(): Promise<PrimitiveTopic[]> {
     return this.topicPostgresRepository.findMany();
   }
 }
