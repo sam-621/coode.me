@@ -1,6 +1,6 @@
 import { AxiosHttpRequest } from '@/core/shared/services';
 
-import { Topic, TopicRepository } from '../domain';
+import { FollowTopicRepositoryInput, Topic, TopicRepository } from '../domain';
 
 export class TopicApiRepository extends AxiosHttpRequest implements TopicRepository {
   constructor() {
@@ -10,7 +10,7 @@ export class TopicApiRepository extends AxiosHttpRequest implements TopicReposit
     });
   }
 
-  async follow(input: FollowInput): Promise<void> {
+  async follow(input: FollowTopicRepositoryInput): Promise<void> {
     this.configRequest({
       endpoint: '/follow'
     });
@@ -28,8 +28,3 @@ export class TopicApiRepository extends AxiosHttpRequest implements TopicReposit
     return topics?.data.data ?? [];
   }
 }
-
-type FollowInput = {
-  userId: string;
-  topicId: string;
-};
