@@ -3,13 +3,13 @@ import { Injectable } from '@nestjs/common';
 import { Uuid } from '@/app/shared/domain';
 import { PrismaService } from '@/app/shared/persistance';
 
-import { FindManyTopicRepository, TopicRepository } from '../domain';
+import { FindManyTopicRepository, FollowTopicRepository, TopicRepository } from '../domain';
 
 @Injectable()
 export class TopicPostgresRepository implements TopicRepository {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async follow(userId: Uuid, topicId: Uuid): Promise<void> {
+  async follow(userId: Uuid, topicId: Uuid): Promise<FollowTopicRepository> {
     this.prismaService.topicOnUser.create({
       data: { userId: userId.value, topicId: topicId.value }
     });
