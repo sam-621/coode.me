@@ -13,7 +13,7 @@ export const TopicCard: FC<Props> = ({ topic }) => {
         <div className="flex justify-between items-center">
           <TopicTitle color={`#${topic.color}`} title={topic.title} />
           <CText textStyle="strong" color="text.secondary">
-            1,789 Posts
+            {topic.stats} Posts
           </CText>
         </div>
         <CText textStyle="subtitle1" color="text.secondary">

@@ -29,6 +29,6 @@ export class TopicPostgresRepository implements TopicRepository {
       orderBy: { title: 'asc' }
     });
 
-    return records.map(r => ({ ...r, stats: r._count.users }));
+    return records.map(r => ({ ...r, _count: undefined, stats: r._count.users }));
   }
 }

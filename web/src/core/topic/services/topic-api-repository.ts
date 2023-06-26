@@ -1,6 +1,6 @@
 import { AxiosHttpRequest } from '@/core/shared/services';
 
-import { GetAllTopicRepository, TopicRepository } from '../domain';
+import { Topic, TopicRepository } from '../domain';
 
 export class TopicApiRepository extends AxiosHttpRequest implements TopicRepository {
   constructor() {
@@ -10,12 +10,12 @@ export class TopicApiRepository extends AxiosHttpRequest implements TopicReposit
     });
   }
 
-  async getAll(): Promise<GetAllTopicRepository> {
+  async getAll(): Promise<Topic[]> {
     this.configRequest({
       endpoint: '/all'
     });
 
-    const topics = await this.get<GetAllTopicRepository>();
+    const topics = await this.get<Topic[]>();
 
     return topics?.data.data ?? [];
   }
