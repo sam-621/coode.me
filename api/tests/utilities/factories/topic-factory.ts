@@ -7,14 +7,22 @@ export class TopicFactory {
   constructor(readonly prisma: PrismaClient) {}
 
   async create(): Promise<PrimitiveTopic> {
-    return await this.prisma.topic.create({
+    const record = await this.prisma.topic.create({
       data: {
         id: Uuid.create().value,
         title: 'topic title',
         color: '#fff',
         description: 'topic description'
+      },
+      include: {
+        _count: { select: { users: true } }
       }
     });
+
+    return {
+      ...record,
+      stats: record._count.users
+    };
   }
 
   static create(topic?: Optional<PrimitiveTopic>): Topic {
@@ -33,7 +41,8 @@ export class TopicFactory {
       updatedAt: new Date(),
       color: topic?.color ?? 'fff',
       description: topic?.description ?? 'topic description',
-      title: topic?.title ?? 'topic title topic title topic title'
+      title: topic?.title ?? 'topic title topic title topic title',
+      stats: 0
     };
   }
 }

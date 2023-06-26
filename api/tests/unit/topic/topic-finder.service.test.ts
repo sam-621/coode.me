@@ -19,7 +19,10 @@ describe('topic-finder.service', () => {
 
   describe('Find Many', () => {
     it('Should return a list of topic', async () => {
-      const topics = [TopicFactory.create().toPrimitives(), TopicFactory.create().toPrimitives()];
+      const topics = [
+        TopicFactory.create().toPrimitives(),
+        TopicFactory.create().toPrimitives()
+      ].map(t => ({ ...t, _count: { users: 0 } }));
 
       prismaMock.topic.findMany.mockResolvedValue(topics);
 
