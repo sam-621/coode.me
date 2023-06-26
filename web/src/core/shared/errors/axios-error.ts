@@ -1,8 +1,8 @@
-import { isAxiosError } from 'axios';
+import { AxiosResponse, isAxiosError } from 'axios';
 
-import { AxiosHttpResponse } from '../services';
+import { ApiResponse } from '../domain';
 
-export const manageAxiosError = <R>(error: unknown): AxiosHttpResponse<R> | null => {
+export const manageAxiosError = <R>(error: unknown): AxiosResponse<ApiResponse<R>> | null => {
   if (!isAxiosError(error)) {
     return null;
   }

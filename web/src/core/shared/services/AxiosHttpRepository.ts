@@ -3,7 +3,7 @@ import axios, { AxiosResponse } from 'axios';
 import { API_DOMAIN, ApiResponse, ConfigRequest, Headers, HttpRepository } from '../domain';
 import { manageAxiosError } from '../errors';
 
-export type AxiosHttpResponse<R> = AxiosResponse<ApiResponse<R>> | null;
+type AxiosHttpResponse<R> = AxiosResponse<ApiResponse<R>> | null;
 
 export class AxiosHttpRequest extends HttpRepository {
   protected apiDomain: string;
