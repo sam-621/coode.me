@@ -1,4 +1,4 @@
-import { ErrorCode } from './errors';
+import { ErrorCode } from '../errors';
 
 export type ApiResponse<T> = {
   data: T;
