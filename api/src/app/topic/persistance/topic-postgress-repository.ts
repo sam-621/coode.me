@@ -14,7 +14,8 @@ export class TopicPostgresRepository implements TopicRepository {
       include: {
         _count: { select: { users: true } },
         users: { where: { userId: userId?.value }, select: { userId: true } }
-      }
+      },
+      orderBy: { title: 'asc' }
     });
   }
 }
