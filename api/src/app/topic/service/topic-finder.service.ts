@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 
-import { FindManyTopicRepository } from '../domain';
+import { PrimitiveTopic } from '../domain';
 import { TopicPostgresRepository } from '../persistance';
 
 @Injectable()
 export class TopicFinderService {
   constructor(private topicPostgresRepository: TopicPostgresRepository) {}
 
-  findMany(): Promise<FindManyTopicRepository> {
+  findMany(): Promise<PrimitiveTopic[]> {
     return this.topicPostgresRepository.findMany();
   }
 }

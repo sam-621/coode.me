@@ -10,8 +10,8 @@ export class TopicModifierController {
   constructor(private topicModifierService: TopicModifierService) {}
 
   @Post('follow')
-  async findMany(@Body() dto: FollowTopicDto) {
-    await this.topicModifierService.follow(dto.userId, dto.topicId);
+  async findMany(@Body() { topicId, userId }: FollowTopicDto) {
+    await this.topicModifierService.follow({ userId, topicId });
 
     return new HttpResponse(null, [SUCCESS_HTTP_MESSAGE], null);
   }

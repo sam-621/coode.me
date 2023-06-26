@@ -1,15 +1,14 @@
 import { Injectable } from '@nestjs/common';
 
-import { Uuid } from '@/app/shared/domain';
 import { PrismaService } from '@/app/shared/persistance';
 
-import { FindManyTopicRepository, FollowTopicRepository, TopicRepository } from '../domain';
+import { FollowTopicRepositoryInput, PrimitiveTopic, TopicRepository } from '../domain';
 
 @Injectable()
 export class TopicPostgresRepository implements TopicRepository {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async follow(userId: Uuid, topicId: Uuid): Promise<FollowTopicRepository> {
+  async follow({ topicId, userId }: FollowTopicRepositoryInput): Promise<void> {
     await this.prismaService.topicOnUser.upsert({
       create: { userId: userId.value, topicId: topicId.value },
       update: {},
@@ -22,7 +21,7 @@ export class TopicPostgresRepository implements TopicRepository {
     });
   }
 
-  async findMany(): Promise<FindManyTopicRepository> {
+  async findMany(): Promise<PrimitiveTopic[]> {
     const records = await this.prismaService.topic.findMany({
       include: {
         _count: { select: { users: true } }
