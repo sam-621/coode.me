@@ -1,5 +1,7 @@
+import { Uuid } from '@/app/shared/domain';
+
 import { PrimitiveTopic } from './topic';
 
 export interface TopicRepository {
-  findMany(): Promise<PrimitiveTopic[]>;
+  findMany(userId?: Uuid): Promise<PrimitiveTopic[]>;
 }

@@ -1,6 +1,12 @@
 import { Entity, Primitives, Uuid, WithoutDateProperties } from '@/app/shared/domain';
 
-import { TopicColor, TopicDescription, TopicStats, TopicTitle } from './components';
+import {
+  TopicColor,
+  TopicDescription,
+  TopicIsFollowed,
+  TopicStats,
+  TopicTitle
+} from './components';
 
 export class Topic extends Entity {
   private constructor(
@@ -8,7 +14,8 @@ export class Topic extends Entity {
     readonly title: TopicTitle,
     readonly description: TopicDescription,
     readonly color: TopicColor,
-    readonly stats: TopicStats
+    readonly stats: TopicStats,
+    readonly isFollowed: TopicIsFollowed
   ) {
     super(id, new Date(), new Date());
   }
@@ -18,13 +25,14 @@ export class Topic extends Entity {
     title,
     description,
     color
-  }: Primitives<WithoutDateProperties<Omit<Topic, 'stats'>>>) {
+  }: Primitives<WithoutDateProperties<Omit<Topic, 'stats' | 'isFollowed'>>>) {
     return new Topic(
       new Uuid(id),
       new TopicTitle(title),
       new TopicDescription(description),
       new TopicColor(color),
-      new TopicStats(0)
+      new TopicStats(0),
+      new TopicIsFollowed(false)
     );
   }
 
@@ -36,7 +44,8 @@ export class Topic extends Entity {
       title: this.title.value,
       description: this.description.value,
       color: this.color.value,
-      stats: this.stats.value
+      stats: this.stats.value,
+      isFollowed: this.isFollowed.value
     };
   }
 }

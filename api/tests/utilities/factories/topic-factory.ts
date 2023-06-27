@@ -13,15 +13,13 @@ export class TopicFactory {
         title: 'topic title',
         color: '#fff',
         description: 'topic description'
-      },
-      include: {
-        _count: { select: { users: true } }
       }
     });
 
     return {
       ...record,
-      stats: record._count.users
+      stats: 0,
+      isFollowed: false
     };
   }
 
@@ -42,7 +40,8 @@ export class TopicFactory {
       color: topic?.color ?? 'fff',
       description: topic?.description ?? 'topic description',
       title: topic?.title ?? 'topic title topic title topic title',
-      stats: 0
+      stats: 0,
+      isFollowed: false
     };
   }
 }
