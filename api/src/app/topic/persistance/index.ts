@@ -1,1 +1,2 @@
-export * from './topic-postgress-repository';
+export * from './topic-on-user-postgres-repository';
+export * from './topic-postgres-repository';
