@@ -2,15 +2,15 @@ import { Controller, Get } from '@nestjs/common';
 
 import { HttpResponse, SUCCESS_HTTP_MESSAGE } from '@/common/utils';
 
-import { TopicFinderService } from '../service';
+import { TopicService } from '../service';
 
 @Controller('topic')
-export class TopicFinderController {
-  constructor(private topicFinderService: TopicFinderService) {}
+export class TopicController {
+  constructor(private topicService: TopicService) {}
 
   @Get('all')
   async findMany() {
-    const topics = await this.topicFinderService.findMany();
+    const topics = await this.topicService.findMany();
 
     return new HttpResponse(topics, [SUCCESS_HTTP_MESSAGE], null);
   }

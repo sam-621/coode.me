@@ -1,2 +1,2 @@
-export * from './topic-finder.service';
-export * from './topic-modifier.service';
+export * from './topic.service';
+export * from './topic-on-user.service';

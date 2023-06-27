@@ -5,7 +5,7 @@ import { Uuid } from '@/app/shared/domain';
 import { TopicOnUserPostgresRepository } from '../persistance';
 
 @Injectable()
-export class TopicModifierService {
+export class TopicOnUserService {
   constructor(private topicOnUserPostgresRepository: TopicOnUserPostgresRepository) {}
 
   async follow({ topicId, userId }: FollowInput): Promise<void> {

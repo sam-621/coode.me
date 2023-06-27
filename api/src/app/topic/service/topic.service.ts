@@ -4,7 +4,7 @@ import { PrimitiveTopic } from '../domain';
 import { TopicPostgresRepository } from '../persistance';
 
 @Injectable()
-export class TopicFinderService {
+export class TopicService {
   constructor(private topicPostgresRepository: TopicPostgresRepository) {}
 
   async findMany(): Promise<PrimitiveTopic[]> {

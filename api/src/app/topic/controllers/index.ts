@@ -1,1 +1,2 @@
-export * from './topic-finder.controller';
+export * from './topic.controller';
+export * from './topic-on-user.controller';

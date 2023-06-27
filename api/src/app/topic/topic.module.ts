@@ -1,17 +1,14 @@
 import { Module } from '@nestjs/common';
 
-import { TopicModifierController } from './controllers/topic-modifier.controller';
-import { TopicFinderController } from './controllers';
+import { TopicController, TopicOnUserController } from './controllers';
 import { TopicOnUserPostgresRepository, TopicPostgresRepository } from './persistance';
-import { TopicFinderService, TopicModifierService } from './service';
+import { TopicOnUserService, TopicService } from './service';
+
+const repositories = [TopicPostgresRepository, TopicOnUserPostgresRepository];
+const services = [TopicService, TopicOnUserService];
 
 @Module({
-  providers: [
-    TopicPostgresRepository,
-    TopicOnUserPostgresRepository,
-    TopicFinderService,
-    TopicModifierService
-  ],
-  controllers: [TopicFinderController, TopicModifierController]
+  providers: [...repositories, ...services],
+  controllers: [TopicController, TopicOnUserController]
 })
 export class TopicModule {}
