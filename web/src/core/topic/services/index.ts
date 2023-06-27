@@ -1,1 +1,1 @@
-export * from './topic-api-repository';
+export * from './topic-service';

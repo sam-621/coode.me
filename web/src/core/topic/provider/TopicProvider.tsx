@@ -2,9 +2,9 @@
 
 import { createContext, FC, PropsWithChildren, useCallback, useContext } from 'react';
 
-import { TopicGetter } from '../application/topic-getter';
 import { Topic } from '../domain';
-import { TopicApiRepository } from '../services';
+import { TopicApiRepository } from '../repositories';
+import { TopicService } from '../services';
 
 type ContextSchema = {
   getAll: () => Promise<Topic[]>;
@@ -16,9 +16,9 @@ const topicApiRepository = new TopicApiRepository();
 
 export const TopicProvider: FC<Props> = ({ children }) => {
   const getAll = useCallback((): Promise<Topic[]> => {
-    const topicGetter = new TopicGetter(topicApiRepository);
+    const topicService = new TopicService(topicApiRepository);
 
-    return topicGetter.getAll();
+    return topicService.getAll();
   }, []);
 
   return <Context.Provider value={{ getAll }}>{children}</Context.Provider>;
