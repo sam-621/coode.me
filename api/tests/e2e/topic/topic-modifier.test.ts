@@ -25,6 +25,7 @@ describe('/topic (topic-modifier)', () => {
     it('Should follow topic when provide correct data', async () => {
       const topicFactory = new TopicFactory(testPrismaClient);
       const userFactory = new UserFactory(testPrismaClient);
+
       const { id: topicId } = await topicFactory.create();
       const { id: userId } = await userFactory.create();
 
