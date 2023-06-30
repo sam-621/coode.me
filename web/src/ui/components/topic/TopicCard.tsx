@@ -21,7 +21,7 @@ export const TopicCard: FC<Props> = ({ topic }) => {
         </CText>
       </div>
       <div className="text-right">
-        <CButton variant="outline" colorScheme="common.white">
+        <CButton variant={topic.isFollowed ? 'filled' : 'outline'} colorScheme="common.white">
           Follow
         </CButton>
       </div>

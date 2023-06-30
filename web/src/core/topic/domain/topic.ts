@@ -5,4 +5,5 @@ export interface Topic extends Entity {
   readonly description: string;
   readonly color: string;
   readonly stats: number;
+  readonly isFollowed: boolean;
 }
