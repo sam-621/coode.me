@@ -1,9 +1,19 @@
+import { API_DOMAIN } from './env';
+
 export abstract class HttpRepository {
   protected apiDomain = '';
 
   protected endpoint = '';
 
   protected headers: Headers = {};
+
+  constructor() {
+    this.endpoint = '';
+    this.apiDomain = API_DOMAIN;
+    this.headers = {
+      'Content-Type': 'application/json'
+    };
+  }
 
   /**
    * Method to modify the current config of th request
@@ -19,12 +29,24 @@ export abstract class HttpRepository {
    *   }
    * })
    */
-  protected abstract configRequest(config: ConfigRequest): void;
+  protected configRequest(config: ConfigRequest): void {
+    this.endpoint += config.endpoint;
+    this.apiDomain = config.apiDomain || this.apiDomain;
+    this.headers = {
+      ...this.headers,
+      ...config.headers
+    };
+  }
 
   /**
    * Method to add the token to the header of the request
    */
-  protected abstract useToken(token: string): void;
+  protected useToken(token: string): void {
+    this.headers = {
+      ...this.headers,
+      authorization: token
+    };
+  }
 
   /**
    * Method to build the url with the current configuration of th request
@@ -33,7 +55,9 @@ export abstract class HttpRepository {
    * @example
    * const res = await fetch(urlBuilder(), config)
    */
-  protected abstract urlBuilder(): string;
+  protected urlBuilder(): string {
+    return `${this.apiDomain}${this.endpoint}`;
+  }
 
   protected abstract get(): Promise<unknown | null>;
 
