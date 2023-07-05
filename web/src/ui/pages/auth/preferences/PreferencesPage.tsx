@@ -1,8 +1,12 @@
+import { TopicApiRepository } from '@/core/topic/repositories';
 import { AppTitle } from '@/ui/components/layout';
 import { CButton, CText, SearchInputContainer } from '@/ui/components/lib';
 import { TopicsList } from '@/ui/components/topic';
 
-export const PreferencesPage = () => {
+export const PreferencesPage = async () => {
+  const topicApiRepository = new TopicApiRepository();
+  const topics = await topicApiRepository.getAll();
+
   return (
     <div className="flex flex-col gap-8">
       <AppTitle />
@@ -17,7 +21,7 @@ export const PreferencesPage = () => {
           </CText>
         </div>
         <SearchInputContainer />
-        <TopicsList />
+        <TopicsList topics={topics} />
       </div>
       <div className="sticky bottom-5">
         <CButton size="lg" width="full">
