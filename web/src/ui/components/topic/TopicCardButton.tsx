@@ -7,11 +7,11 @@ import { useFollowTopic } from '@/core/topic/hooks';
 import { CButton } from '../lib';
 
 export const TopicCardButton: FC<Props> = ({ isFollowed, topicId }) => {
-  const { followUser } = useFollowTopic();
+  const { followTopic } = useFollowTopic();
 
   return (
     <CButton
-      onClick={() => followUser({ topicId, userId: '' })}
+      onClick={() => followTopic({ topicId, userId: '' })}
       variant={isFollowed ? 'filled' : 'outline'}
       colorScheme="common.white"
     >
