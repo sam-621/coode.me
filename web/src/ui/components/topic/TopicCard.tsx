@@ -2,8 +2,9 @@ import { FC } from 'react';
 
 import { Topic } from '@/core/topic/domain';
 
-import { CButton, CCard, CText } from '../lib';
+import { CCard, CText } from '../lib';
 
+import { TopicCardButton } from './TopicCardButton';
 import { TopicTitle } from './TopicTitle';
 
 export const TopicCard: FC<Props> = ({ topic }) => {
@@ -21,9 +22,7 @@ export const TopicCard: FC<Props> = ({ topic }) => {
         </CText>
       </div>
       <div className="text-right">
-        <CButton variant={topic.isFollowed ? 'filled' : 'outline'} colorScheme="common.white">
-          Follow
-        </CButton>
+        <TopicCardButton isFollowed={topic.isFollowed} topicId={topic.id} />
       </div>
     </CCard>
   );
