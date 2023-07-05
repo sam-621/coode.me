@@ -1,7 +1,8 @@
+import { SearchProvider } from '@/core/shared/providers';
 import { TopicApiRepository } from '@/core/topic/repositories';
 import { AppTitle } from '@/ui/components/layout';
 import { CButton, CText, SearchInputContainer } from '@/ui/components/lib';
-import { TopicsList } from '@/ui/components/topic';
+import { FilteredTopicsList } from '@/ui/components/topic';
 
 export const PreferencesPage = async () => {
   const topicApiRepository = new TopicApiRepository();
@@ -20,8 +21,10 @@ export const PreferencesPage = async () => {
             you
           </CText>
         </div>
-        <SearchInputContainer />
-        <TopicsList topics={topics} />
+        <SearchProvider>
+          <SearchInputContainer />
+          <FilteredTopicsList topics={topics} />
+        </SearchProvider>
       </div>
       <div className="sticky bottom-5">
         <CButton size="lg" width="full">
