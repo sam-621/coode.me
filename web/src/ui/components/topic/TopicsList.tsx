@@ -7,7 +7,7 @@ import { CList } from '../lib';
 
 import { TopicCard } from './TopicCard';
 
-export const TopicsList: FC<Props> = async ({ topics, query }) => {
+export const TopicsList: FC<Props> = ({ topics, query }) => {
   const filteredTopics = filterTopicsByTitle(topics, query ?? '');
 
   return (
