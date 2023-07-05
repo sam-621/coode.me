@@ -11,5 +11,5 @@ export const manageAxiosError = <R>(error: unknown): AxiosResponse<ApiResponse<R
     return null;
   }
 
-  return error.response.data;
+  return error.response;
 };

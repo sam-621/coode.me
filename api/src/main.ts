@@ -11,7 +11,7 @@ async function bootstrap() {
   /**
    * Creates nest application
    */
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
 
   /**
    * Server configuration

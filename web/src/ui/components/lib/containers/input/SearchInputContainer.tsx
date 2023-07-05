@@ -7,9 +7,6 @@ import { useSearchProvider } from '@/core/shared/providers';
 
 export const SearchInputContainer = () => {
   const { query, setQuery } = useSearchProvider();
-  console.log({
-    query
-  });
 
   return (
     <InputGroup>

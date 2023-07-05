@@ -5,8 +5,7 @@ import { CButton, CText, SearchInputContainer } from '@/ui/components/lib';
 import { FilteredTopicsList } from '@/ui/components/topic';
 
 export const PreferencesPage = async () => {
-  const topicApiRepository = new TopicApiRepository();
-  const topics = await topicApiRepository.getAll();
+  const topics = await TopicApiRepository.getAll();
 
   return (
     <div className="flex flex-col gap-8">

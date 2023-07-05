@@ -1,30 +1,20 @@
-import { AxiosHttpRequest } from '@/core/shared/services';
+import { httpMethods } from '@/core/shared/libs/http-client';
 
 import { FollowTopicRepositoryInput, Topic, TopicRepository } from '../domain';
 
-export class TopicApiRepository extends AxiosHttpRequest implements TopicRepository {
-  constructor() {
-    super();
-    this.configRequest({
-      endpoint: '/topic'
-    });
-  }
+const BASE_ENDPOINT = '/topic';
 
-  async follow(input: FollowTopicRepositoryInput): Promise<void> {
-    this.configRequest({
-      endpoint: '/follow'
-    });
+const getAll = async () => {
+  const topics = await httpMethods.get<Topic[]>(`${BASE_ENDPOINT}/all`);
 
-    await this.post(input);
-  }
+  return topics?.data.data ?? [];
+};
 
-  async getAll(): Promise<Topic[]> {
-    this.configRequest({
-      endpoint: '/all'
-    });
+const follow = async (input: FollowTopicRepositoryInput): Promise<void> => {
+  await httpMethods.post(`${BASE_ENDPOINT}/follow`, input);
+};
 
-    const topics = await this.get<Topic[]>();
-
-    return topics?.data.data ?? [];
-  }
-}
+export const TopicApiRepository: TopicRepository = {
+  getAll,
+  follow
+};
