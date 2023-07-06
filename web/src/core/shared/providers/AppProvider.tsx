@@ -1,5 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
 
+import { UserProvider } from '@/core/user/provider';
 import { ThemeProvider } from '@/ui/theme';
 
 import { ReactQueryProvider } from '../libs/react-query';
@@ -7,7 +8,9 @@ import { ReactQueryProvider } from '../libs/react-query';
 export const AppProvider: FC<Props> = ({ children }) => {
   return (
     <ReactQueryProvider>
-      <ThemeProvider>{children}</ThemeProvider>
+      <UserProvider>
+        <ThemeProvider>{children}</ThemeProvider>
+      </UserProvider>
     </ReactQueryProvider>
   );
 };
