@@ -1,50 +1,19 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/router';
+import { FormEvent, useState } from 'react';
 
-import { magic } from '@/core/shared/libs/auth';
-import { useUserProvider } from '@/core/user/provider';
+import { useLogin } from '@/core/auth/hook';
 import { CButton, CDivider, CText, InputContainer } from '@/ui/components/lib';
 import { GithubButton } from '@/ui/components/social';
 
 export const SignInForm = () => {
-  const { user, setUser } = useUserProvider();
+  const { login } = useLogin();
   const [email, setEmail] = useState('');
 
-  const handleLogin = async e => {
+  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Log in using our email with Magic and store the returned DID token in a variable
-    try {
-      const didToken = await magic?.auth.loginWithMagicLink({
-        email
-      });
-
-      console.log({
-        didToken
-      });
-
-      // Send this token to our validation endpoint
-      const res = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-          Authorization: `Bearer ${didToken}`
-        }
-      });
-
-      // If successful, update our user state with their metadata and route to the dashboard
-      if (res.ok) {
-        const userMetadata = await magic?.user.getMetadata();
-        setUser(userMetadata);
-        console.log({
-          userMetadata
-        });
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    login(email);
   };
 
   return (
@@ -57,7 +26,7 @@ export const SignInForm = () => {
           placeholder="example@example.com"
         />
         <div className="w-full">
-          <CButton size="lg" width="100%" variant="filled" colorScheme="common.white">
+          <CButton type="submit" size="lg" width="100%" variant="filled" colorScheme="common.white">
             Sign in
           </CButton>
         </div>

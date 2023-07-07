@@ -1,3 +1,5 @@
+'use client';
+
 import { createContext, FC, PropsWithChildren, useContext, useEffect } from 'react';
 
 import { AuthRepository } from '../domain';
