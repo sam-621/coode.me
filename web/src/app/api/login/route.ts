@@ -1,18 +1,18 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 
 import { Magic } from '@magic-sdk/admin';
 
 // Create an instance of magic admin using our secret key (not our publishable key)
 const mAdmin = new Magic(process.env.MAGIC_SECRET_KEY);
 
-export default async function login(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextRequest) {
   try {
     // Grab the DID token from our headers and parse it
-    const didToken = mAdmin.utils.parseAuthorizationHeader(req.headers.authorization ?? '');
+    const didToken = mAdmin.utils.parseAuthorizationHeader(req.headers.get('authorization') ?? '');
     // Validate the token and send back a successful response
     await mAdmin.token.validate(didToken);
-    res.status(200).json({ authenticated: true });
+    return NextResponse.json({ authenticated: true }, { status: 200 });
   } catch (error) {
-    res.status(500).json({ error });
+    return NextResponse.json({ error }, { status: 500 });
   }
 }
