@@ -1,5 +1,5 @@
 export interface Auth {
   isLoggedIn: boolean;
-  issuer: string;
-  email: string;
+  issuer: string | null;
+  email: string | null;
 }
