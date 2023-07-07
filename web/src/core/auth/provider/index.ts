@@ -1,1 +1,1 @@
-export * from './AuthMagicRepositoryProvider';
+export * from './AuthRepositoryProvider';
