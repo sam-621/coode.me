@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, FC, PropsWithChildren, useContext, useEffect } from 'react';
+import { createContext, FC, PropsWithChildren, useContext } from 'react';
 
 import { AuthRepository } from '../domain';
 import { AuthMagicRepository } from '../repository';
@@ -12,16 +12,6 @@ const Context = createContext<AuthRepository>({
 });
 
 export const AuthRepositoryProvider: FC<Props> = ({ children }) => {
-  useEffect(() => {
-    (async () => {
-      const isLoggedIn = await AuthMagicRepository.getAuth();
-
-      if (!isLoggedIn) {
-        // redirect or do something
-      }
-    })();
-  }, []);
-
   return (
     <Context.Provider
       value={{
@@ -37,4 +27,4 @@ export const AuthRepositoryProvider: FC<Props> = ({ children }) => {
 
 type Props = PropsWithChildren;
 
-export const useAuthProvider = () => useContext(Context);
+export const useAUthRepositoryProvider = () => useContext(Context);

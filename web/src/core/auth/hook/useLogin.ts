@@ -2,11 +2,11 @@
 
 import { useRouter } from 'next/navigation';
 
-import { useAuthProvider } from '../provider';
+import { useAUthRepositoryProvider } from '../provider';
 
 export const useLogin = () => {
   const router = useRouter();
-  const repository = useAuthProvider();
+  const repository = useAUthRepositoryProvider();
 
   const login = async (email: string) => {
     const token = await repository.login(email);
