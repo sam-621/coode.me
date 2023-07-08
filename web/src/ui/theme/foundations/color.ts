@@ -69,9 +69,16 @@ export const colors: ThemeOverride['colors'] = {
   },
   common: {
     white: {
+      50: '#FFFFFF',
+      100: '#FFFFFF',
+      200: '#FFFFFF',
+      300: '#FFFFFF',
+      400: '#FFFFFF',
       500: '#FFFFFF',
       600: '#FFFFFF',
       700: '#FFFFFF',
+      800: '#FFFFFF',
+      900: '#FFFFFF',
       '8%': 'rgba(255, 255, 255, 0.08)',
       '12%': 'rgba(255, 255, 255, 0.12)',
       '16%': 'rgba(255, 255, 255, 0.16)',

@@ -36,6 +36,9 @@ const CustomButton: ComponentStyleConfig = {
       },
       _active: {
         bg: `${c}.700`
+      },
+      _disabled: {
+        bg: `${c}.500`
       }
     }),
     outline: ({ colorScheme: c }) => ({
@@ -45,6 +48,9 @@ const CustomButton: ComponentStyleConfig = {
       },
       _active: {
         bg: `${c}.16%`
+      },
+      _disabled: {
+        bg: `${c}.500`
       }
     }),
     ghost: ({ colorScheme: c }) => ({
@@ -54,6 +60,9 @@ const CustomButton: ComponentStyleConfig = {
       },
       _active: {
         bg: `${c}.16%`
+      },
+      _disabled: {
+        bg: `${c}.500`
       }
     })
   },

@@ -1,32 +1,32 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
-
-import { useLogin } from '@/core/auth/hook';
+import { useLoginForm } from '@/core/auth/hook/useLoginForm';
 import { CButton, CDivider, CText, InputContainer } from '@/ui/components/lib';
 import { GithubButton } from '@/ui/components/social';
 
 export const SignInForm = () => {
-  const { login } = useLogin();
-  const [email, setEmail] = useState('');
-
-  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    login(email);
-  };
+  const { register, onSubmit, isSubmitting, errors } = useLoginForm();
 
   return (
     <div className="flex flex-col gap-6">
-      <form className="flex flex-col gap-5" onSubmit={handleLogin}>
+      <form className="flex flex-col gap-5" onSubmit={onSubmit}>
         <InputContainer
-          value={email}
-          onChange={e => setEmail(e.target.value)}
           label="Email"
           placeholder="example@example.com"
+          {...register('email')}
+          error={errors.email?.message}
         />
         <div className="w-full">
-          <CButton type="submit" size="lg" width="100%" variant="filled" colorScheme="common.white">
+          <CButton
+            isLoading={isSubmitting}
+            loadingText="Signing in..."
+            type="submit"
+            size="lg"
+            width="100%"
+            variant="filled"
+            colorScheme="common.white"
+            _hover={{ bg: '' }}
+          >
             Sign in
           </CButton>
         </div>
