@@ -1,6 +1,6 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+
+import { useForm } from '@/core/shared/libs/forms';
 
 import { useLogin } from './useLogin';
 
@@ -9,18 +9,8 @@ const schema = z.object({
 });
 
 export const useLoginForm = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting }
-  } = useForm<FromInputs>({
-    mode: 'onBlur',
-    reValidateMode: 'onChange',
-    criteriaMode: 'all',
-    resolver: zodResolver(schema)
-  });
-
   const { login } = useLogin();
+  const { register, handleSubmit, isSubmitting, errors } = useForm<FromInputs>(schema);
 
   const onSubmit = async (input: FromInputs) => {
     await login(input.email);
